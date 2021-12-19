@@ -7,7 +7,7 @@ A very simple webpage for showing the now playing song and album art from a spot
 Be warned quite hacky at this stage, e.g. reloads whole web page based on calculated time to end of current song. Noticeable if you change or skip a song, won't update until song would have finished.
 
 ### Node Red Flows
-![Node Red Flows](/Readme images/NodeRed Flows.png)
+![Node Red Flows](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/Readme%20images/NodeRed%20Flows.png)
 
 ## To use
 1. Install Node Red
@@ -15,7 +15,7 @@ Be warned quite hacky at this stage, e.g. reloads whole web page based on calcul
 3. Import [spotifynodered.json](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/spotifynodered.json) into Node Red
 4. Set up [Spotify Developer Account](https://developer.spotify.com/dashboard/) and new project 
 5. Authorise the Spotify node in Node Red using Project ID and Secret and the [Scopes here](spotify_scopes.md)
-6. Now playing web page is available at [your.nodered.ip]/spotify
+6. Now playing web page is available at http://[your.nodered.ip]/spotify
 
 ## Options
 1. Change web page in Web Request node
