@@ -1,0 +1,640 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Simple Spotify Now Playing",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cab7badd01b8dbfe",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 80,
+        "wires": [
+            [
+                "1f8621502fd25281"
+            ]
+        ]
+    },
+    {
+        "id": "97a03cbb753a4ec8",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "eb5dba838f4a8d4a",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Mark's Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "output": "str",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "97a03cbb753a4ec8"
+            ]
+        ]
+    },
+    {
+        "id": "c03efdbb927399c4",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Current Track",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlayingTrack",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "c179d20b16bbd921",
+                "3361c521f8511819"
+            ]
+        ]
+    },
+    {
+        "id": "c179d20b16bbd921",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.item.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "payload.item.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.item.artists[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "payload.item.album.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.item.album.images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "13513f4646d7cf37",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "css",
+        "field": "css",
+        "fieldType": "flow",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "<style>\n    body, html {\n      height: 140%;\n      margin: 0;\n      font-family: Arial, Helvetica, sans-serif;\n      background-color: black;\n      overflow: hidden;\n    }\n    * {\n      box-sizing: border-box;\n    }\n    .bg-image {\n      background-image: url(\"{{{flow.image}}}\");\n      filter: blur(8px);\n      -webkit-filter: blur(8px);\n      height: 110%; \n      background-position: center;\n      background-repeat: no-repeat;\n      background-size: cover;\n    }\n    \n    .playing {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      z-index: 2;\n      width: 80%;\n      display: flex;\n    }\n\n    /* Position text in the middle of the page/image */\n    .song-text {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0.33); /* Black w/opacity/see-through */\n      border-radius: 25px;\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      align-self: center;\n      padding: 1.5%;\n      display: block;\n      height: fit-content;\n    }\n\n    /* Position text in the middle of the page/image */\n    .album-data {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      /* max-width: 80%;\n      max-height: 60%; */\n      display: block;\n    }\n    .image-responsive {\n      width: 75%;\n      height: auto;\n      border-radius: 25px;\n    } \n\n    </style>",
+        "output": "str",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "eb5dba838f4a8d4a"
+            ]
+        ]
+    },
+    {
+        "id": "20f221588d1d91fc",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Calc remaining seconds",
+        "func": "msg.reload = 1 + ( msg.duration - msg.position ) / 1000;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "3cfc234a3f1215a6"
+            ]
+        ]
+    },
+    {
+        "id": "3cfc234a3f1215a6",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set reload in seconds",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload",
+                "pt": "flow",
+                "to": "reload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "13513f4646d7cf37"
+            ]
+        ]
+    },
+    {
+        "id": "3361c521f8511819",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Update Reload Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "duration",
+                "pt": "msg",
+                "to": "payload.item.duration_ms",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "position",
+                "pt": "msg",
+                "to": "payload.progress_ms",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "20f221588d1d91fc"
+            ]
+        ]
+    },
+    {
+        "id": "a6e9a885ea9425c2",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Initialise",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "5493655477b5e924"
+            ]
+        ]
+    },
+    {
+        "id": "a21b4d2f29334b27",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Initialise Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.items[0].track.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "payload.items[0].track.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.items[0].track.artists[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "payload.items[0].track.album.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.items[0].track.album.images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 40,
+        "wires": [
+            [
+                "7be8214192eafd13"
+            ]
+        ]
+    },
+    {
+        "id": "7be8214192eafd13",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Initialise reload in seconds",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload",
+                "pt": "flow",
+                "to": "15",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5493655477b5e924",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Recent Tracks",
+        "auth": "934bab396b45618f",
+        "api": "getMyRecentlyPlayedTracks",
+        "x": 270,
+        "y": 40,
+        "wires": [
+            [
+                "a21b4d2f29334b27"
+            ]
+        ]
+    },
+    {
+        "id": "bfecb051f3e03267",
+        "type": "counter",
+        "z": "f6f2187d.f17ca8",
+        "inc": 1,
+        "name": "",
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "0cc3ca40d6b5af70"
+            ]
+        ]
+    },
+    {
+        "id": "0cc3ca40d6b5af70",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set Counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload_counter",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f8621502fd25281",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get if playing",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlaybackState",
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "37c4d814a13814f6",
+                "bfecb051f3e03267"
+            ]
+        ]
+    },
+    {
+        "id": "37c4d814a13814f6",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload.is_playing",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "true",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "534f6731c4f799ac"
+            ],
+            [
+                "86b9203d44e46632"
+            ]
+        ]
+    },
+    {
+        "id": "534f6731c4f799ac",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "0cfa207ed85d3096"
+        ],
+        "x": 855,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "86b9203d44e46632",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "4c4e50cd31dd3423"
+        ],
+        "x": 855,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0cfa207ed85d3096",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "534f6731c4f799ac"
+        ],
+        "x": 35,
+        "y": 140,
+        "wires": [
+            [
+                "c03efdbb927399c4"
+            ]
+        ]
+    },
+    {
+        "id": "0b2f14562edc39ab",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "b8f6ee61efa8704b",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Mark's Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "output": "str",
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "0b2f14562edc39ab"
+            ]
+        ]
+    },
+    {
+        "id": "ca078428b2bb4395",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.items[0].images[0].url",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "Mark's Top Artist",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.items[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "The songs ",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.items[0].images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "69830c336f657e2d"
+            ]
+        ]
+    },
+    {
+        "id": "2c017c418b2ad24d",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "css",
+        "field": "css",
+        "fieldType": "flow",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "<style>\n    body, html {\n      height: 140%;\n      margin: 0;\n      font-family: Arial, Helvetica, sans-serif;\n      background-color: black;\n      overflow: hidden;\n    }\n    * {\n      box-sizing: border-box;\n    }\n    .bg-image {\n      background-image: url(\"{{{flow.image}}}\");\n      filter: blur(8px);\n      -webkit-filter: blur(8px);\n      height: 110%; \n      background-position: center;\n      background-repeat: no-repeat;\n      background-size: cover;\n    }\n    \n    .playing {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      z-index: 2;\n      width: 80%;\n      display: flex;\n    }\n\n    /* Position text in the middle of the page/image */\n    .song-text {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0.33); /* Black w/opacity/see-through */\n      border-radius: 25px;\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      align-self: center;\n      padding: 1.5%;\n      display: block;\n      height: fit-content;\n    }\n\n    /* Position text in the middle of the page/image */\n    .album-data {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      /* max-width: 80%;\n      max-height: 60%; */\n      display: block;\n    }\n    .image-responsive {\n      width: 75%;\n      height: auto;\n      border-radius: 25px;\n    } \n\n    </style>",
+        "output": "str",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "b8f6ee61efa8704b"
+            ]
+        ]
+    },
+    {
+        "id": "69830c336f657e2d",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set reload in seconds",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload",
+                "pt": "flow",
+                "to": "15",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 300,
+        "wires": [
+            [
+                "2c017c418b2ad24d"
+            ]
+        ]
+    },
+    {
+        "id": "4c4e50cd31dd3423",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "86b9203d44e46632"
+        ],
+        "x": 45,
+        "y": 300,
+        "wires": [
+            [
+                "09b1becf0cacaa9a"
+            ]
+        ]
+    },
+    {
+        "id": "09b1becf0cacaa9a",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Top Artist",
+        "auth": "934bab396b45618f",
+        "api": "getMyTopArtists",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "ca078428b2bb4395"
+            ]
+        ]
+    },
+    {
+        "id": "934bab396b45618f",
+        "type": "spotify-auth",
+        "name": "Mark's Spotify",
+        "scope": "user-read-playback-state\nuser-read-private\nuser-follow-read\nuser-library-read\nuser-read-playback-position\nplaylist-read-private\nuser-top-read\nuser-read-currently-playing\nuser-read-recently-played"
+    }
+]
