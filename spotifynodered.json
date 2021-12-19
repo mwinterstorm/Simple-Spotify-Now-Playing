@@ -11,7 +11,7 @@
         "type": "http in",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "url": "/hello",
+        "url": "/spotify",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -43,7 +43,7 @@
         "fieldType": "msg",
         "format": "html",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Mark's Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
         "output": "str",
         "x": 250,
         "y": 240,
@@ -488,7 +488,7 @@
         "fieldType": "msg",
         "format": "html",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Mark's Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
         "output": "str",
         "x": 250,
         "y": 340,
@@ -516,7 +516,7 @@
                 "t": "set",
                 "p": "trackname",
                 "pt": "flow",
-                "to": "Mark's Top Artist",
+                "to": "Top Artist",
                 "tot": "str"
             },
             {
@@ -634,7 +634,7 @@
     {
         "id": "934bab396b45618f",
         "type": "spotify-auth",
-        "name": "Mark's Spotify",
+        "name": "Spotify",
         "scope": "user-read-playback-state\nuser-read-private\nuser-follow-read\nuser-library-read\nuser-read-playback-position\nplaylist-read-private\nuser-top-read\nuser-read-currently-playing\nuser-read-recently-played"
     }
 ]

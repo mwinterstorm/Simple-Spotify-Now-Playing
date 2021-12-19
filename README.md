@@ -5,8 +5,13 @@ A simple web page with Node Red to show Spotify now playing song / top artist wh
 1. Install Node Red
 2. Install node-red-contrib-spotify using Node Red package manager
 3. Import [spotifynodered.json](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/spotifynodered.json) into Node Red
-4. Set up Spotify Developer Account and new project (https://developer.spotify.com/dashboard/)
+4. Set up [Spotify Developer Account](https://developer.spotify.com/dashboard/) and new project 
 5. Authorise the Spotify node in Node Red
+6. Now playing web page is available at [your.nodered.ip]/spotify
 
 ## Options
-1. Change web page in Web Reguest node
+1. Change web page in Web Request node
+
+## To do
+1. Automatically pull user account name
+2. When nothing playing alternate between Top Artists / Top Songs / Recently Played
