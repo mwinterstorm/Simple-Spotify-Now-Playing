@@ -1,63 +1,56 @@
-<style>
-  body, html {
-    height: 140%;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-    overflow: hidden;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  .bg-image {
-    background-image: url("{{{flow.image}}}");
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-    height: 110%; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .playing {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 80%;
-    display: flex;
-  }
+body, html {
+  height: 140%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  overflow: hidden;
+}
 
-  /* Position text in the middle of the page/image */
-  .song-text {
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0, 0.33); /* Black w/opacity/see-through */
-    border-radius: 25px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    text-align: right;
-    align-self: center;
-    padding: 1.5%;
-    display: block;
-    height: fit-content;
-  }
+.bg-image {
+  background-image: url("{{{flow.image}}}");
+  filter: blur(8px) hue-rotate(190deg) brightness(0.7);
+  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);
+  height: 110%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  /* Position text in the middle of the page/image */
-  .album-data {
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    text-align: right;
-    /* max-width: 80%;
-    max-height: 60%; */
-    display: block;
-  }
-  .image-responsive {
-    width: 75%;
-    height: auto;
-    border-radius: 25px;
-  } 
+.playing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  display: flex;
+}
 
-  </style>
+/* Position text in the middle of the page/image */
+.song-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-align: right;
+  align-self: center;
+  padding: 1.5%;
+  display: block;
+  height: fit-content;
+}
+
+/* Position text in the middle of the page/image */
+.album-data {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-align: right;
+  display: block;
+}
+.image-responsive {
+  width: 75%;
+  height: auto;
+  border-radius: 25px;
+}
