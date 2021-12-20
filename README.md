@@ -4,6 +4,8 @@ A simple web page with Node Red to show Spotify now playing song / top artist wh
 ## Description
 A very simple webpage for showing the now playing song and album art from a spotify account based on Node Red.
 
+![example page](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/Readme%20images/page.jpg)
+
 Be warned quite hacky at this stage, e.g. reloads whole web page based on calculated time to end of current song. Noticeable if you change or skip a song, won't update until song would have finished.
 
 ### Node Red Flows
@@ -18,8 +20,8 @@ Be warned quite hacky at this stage, e.g. reloads whole web page based on calcul
 6. Now playing web page is available at http://[your.nodered.ip]/spotify
 
 ## Options
+You can:
 1. Change web page in Web Request node
 
 ## To do
-1. Automatically pull user account name
-2. When nothing playing alternate between Top Artists / Top Songs / Recently Played
+1. When nothing playing add in recently played songs
