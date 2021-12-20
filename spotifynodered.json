@@ -10,12 +10,12 @@
         "id": "cab7badd01b8dbfe",
         "type": "http in",
         "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/spotify",
+        "name": "Web Request",
+        "url": "/hello",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 80,
+        "x": 90,
         "y": 80,
         "wires": [
             [
@@ -43,7 +43,7 @@
         "fieldType": "msg",
         "format": "html",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
         "output": "str",
         "x": 250,
         "y": 240,
@@ -131,7 +131,7 @@
         "fieldType": "flow",
         "format": "css",
         "syntax": "mustache",
-        "template": "<style>\n    body, html {\n      height: 140%;\n      margin: 0;\n      font-family: Arial, Helvetica, sans-serif;\n      background-color: black;\n      overflow: hidden;\n    }\n    * {\n      box-sizing: border-box;\n    }\n    .bg-image {\n      background-image: url(\"{{{flow.image}}}\");\n      filter: blur(8px);\n      -webkit-filter: blur(8px);\n      height: 110%; \n      background-position: center;\n      background-repeat: no-repeat;\n      background-size: cover;\n    }\n    \n    .playing {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      z-index: 2;\n      width: 80%;\n      display: flex;\n    }\n\n    /* Position text in the middle of the page/image */\n    .song-text {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0.33); /* Black w/opacity/see-through */\n      border-radius: 25px;\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      align-self: center;\n      padding: 1.5%;\n      display: block;\n      height: fit-content;\n    }\n\n    /* Position text in the middle of the page/image */\n    .album-data {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      /* max-width: 80%;\n      max-height: 60%; */\n      display: block;\n    }\n    .image-responsive {\n      width: 75%;\n      height: auto;\n      border-radius: 25px;\n    } \n\n    </style>",
+        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
         "output": "str",
         "x": 130,
         "y": 240,
@@ -296,7 +296,7 @@
         "y": 40,
         "wires": [
             [
-                "7be8214192eafd13"
+                "9d2cfcaa58ce4ca3"
             ]
         ]
     },
@@ -319,7 +319,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
+        "x": 1080,
         "y": 40,
         "wires": [
             []
@@ -386,7 +386,7 @@
         "name": "Get if playing",
         "auth": "934bab396b45618f",
         "api": "getMyCurrentPlaybackState",
-        "x": 230,
+        "x": 250,
         "y": 80,
         "wires": [
             [
@@ -422,7 +422,7 @@
                 "534f6731c4f799ac"
             ],
             [
-                "86b9203d44e46632"
+                "19e6d616ae22b910"
             ]
         ]
     },
@@ -435,7 +435,7 @@
         "links": [
             "0cfa207ed85d3096"
         ],
-        "x": 855,
+        "x": 735,
         "y": 80,
         "wires": []
     },
@@ -446,10 +446,11 @@
         "name": "",
         "mode": "link",
         "links": [
-            "4c4e50cd31dd3423"
+            "4c4e50cd31dd3423",
+            "3593b8912a56695a"
         ],
-        "x": 855,
-        "y": 120,
+        "x": 1275,
+        "y": 100,
         "wires": []
     },
     {
@@ -476,7 +477,7 @@
         "statusCode": "",
         "headers": {},
         "x": 370,
-        "y": 340,
+        "y": 360,
         "wires": []
     },
     {
@@ -488,10 +489,10 @@
         "fieldType": "msg",
         "format": "html",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <!-- following is node red reference to Style -->\n    {{{flow.css}}} \n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"song-text\">\n\n    <h1>{{{flow.trackname}}}</h1>\n\n  </div>\n  <div class=\"album-data\">\n\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</p>\n  </div>\n</div>\n</body>\n</html>",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}'s Top Artists</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
         "output": "str",
         "x": 250,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "0b2f14562edc39ab"
@@ -508,22 +509,21 @@
                 "t": "set",
                 "p": "image",
                 "pt": "flow",
-                "to": "payload.items[0].images[0].url",
-                "tot": "msg",
-                "dc": true
+                "to": "payload.images[0].url",
+                "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "trackname",
                 "pt": "flow",
-                "to": "Top Artist",
-                "tot": "str"
+                "to": "username",
+                "tot": "flow"
             },
             {
                 "t": "set",
                 "p": "artistname",
                 "pt": "flow",
-                "to": "payload.items[0].name",
+                "to": "payload.name",
                 "tot": "msg"
             },
             {
@@ -537,7 +537,7 @@
                 "t": "set",
                 "p": "favicon",
                 "pt": "flow",
-                "to": "payload.items[0].images[2].url",
+                "to": "payload.images[2].url",
                 "tot": "msg"
             }
         ],
@@ -546,7 +546,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
+        "x": 550,
         "y": 300,
         "wires": [
             [
@@ -563,10 +563,10 @@
         "fieldType": "flow",
         "format": "css",
         "syntax": "mustache",
-        "template": "<style>\n    body, html {\n      height: 140%;\n      margin: 0;\n      font-family: Arial, Helvetica, sans-serif;\n      background-color: black;\n      overflow: hidden;\n    }\n    * {\n      box-sizing: border-box;\n    }\n    .bg-image {\n      background-image: url(\"{{{flow.image}}}\");\n      filter: blur(8px);\n      -webkit-filter: blur(8px);\n      height: 110%; \n      background-position: center;\n      background-repeat: no-repeat;\n      background-size: cover;\n    }\n    \n    .playing {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      z-index: 2;\n      width: 80%;\n      display: flex;\n    }\n\n    /* Position text in the middle of the page/image */\n    .song-text {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0.33); /* Black w/opacity/see-through */\n      border-radius: 25px;\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      align-self: center;\n      padding: 1.5%;\n      display: block;\n      height: fit-content;\n    }\n\n    /* Position text in the middle of the page/image */\n    .album-data {\n      background-color: rgb(0,0,0); /* Fallback color */\n      background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n      color: rgb(255, 255, 255);\n      font-weight: bold;\n      text-align: right;\n      /* max-width: 80%;\n      max-height: 60%; */\n      display: block;\n    }\n    .image-responsive {\n      width: 75%;\n      height: auto;\n      border-radius: 25px;\n    } \n\n    </style>",
+        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
         "output": "str",
         "x": 130,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "b8f6ee61efa8704b"
@@ -583,7 +583,7 @@
                 "t": "set",
                 "p": "reload",
                 "pt": "flow",
-                "to": "15",
+                "to": "60",
                 "tot": "num"
             }
         ],
@@ -592,7 +592,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
+        "x": 780,
         "y": 300,
         "wires": [
             [
@@ -627,7 +627,364 @@
         "y": 300,
         "wires": [
             [
+                "aee9046f9cae91ec"
+            ]
+        ]
+    },
+    {
+        "id": "aee9046f9cae91ec",
+        "type": "random-item",
+        "z": "f6f2187d.f17ca8",
+        "name": "Random Artist",
+        "input": "payload.items",
+        "inputType": "msg",
+        "output": "payload",
+        "outputType": "msg",
+        "number": 1,
+        "x": 340,
+        "y": 300,
+        "wires": [
+            [
                 "ca078428b2bb4395"
+            ]
+        ]
+    },
+    {
+        "id": "3f133b32943e9b62",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3344a35c3d0619de",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}'s Top Songs</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
+        "output": "str",
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "3f133b32943e9b62"
+            ]
+        ]
+    },
+    {
+        "id": "29fa27f379ff3ff6",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "username",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.artists[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "payload.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.album.images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 420,
+        "wires": [
+            [
+                "79d2c18af672b994"
+            ]
+        ]
+    },
+    {
+        "id": "fa04dd240a5ab2b1",
+        "type": "template",
+        "z": "f6f2187d.f17ca8",
+        "name": "css",
+        "field": "css",
+        "fieldType": "flow",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
+        "output": "str",
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "3344a35c3d0619de"
+            ]
+        ]
+    },
+    {
+        "id": "79d2c18af672b994",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set reload in seconds",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload",
+                "pt": "flow",
+                "to": "60",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 420,
+        "wires": [
+            [
+                "fa04dd240a5ab2b1"
+            ]
+        ]
+    },
+    {
+        "id": "442d9d96f018afff",
+        "type": "random-item",
+        "z": "f6f2187d.f17ca8",
+        "name": "Random Artist",
+        "input": "payload.items",
+        "inputType": "msg",
+        "output": "payload",
+        "outputType": "msg",
+        "number": 1,
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "29fa27f379ff3ff6"
+            ]
+        ]
+    },
+    {
+        "id": "19e6d616ae22b910",
+        "type": "random",
+        "z": "f6f2187d.f17ca8",
+        "name": "Random",
+        "low": 1,
+        "high": "2",
+        "inte": "true",
+        "property": "random",
+        "x": 780,
+        "y": 120,
+        "wires": [
+            [
+                "03e87893769830f2"
+            ]
+        ]
+    },
+    {
+        "id": "300564b3f2e13fb1",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "random",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1190,
+        "y": 120,
+        "wires": [
+            [
+                "86b9203d44e46632"
+            ],
+            [
+                "fa8357c91f435f75"
+            ]
+        ]
+    },
+    {
+        "id": "fa8357c91f435f75",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "214e4540e88ae3e7"
+        ],
+        "x": 1275,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "659deb8bdd7bd36d",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [],
+        "x": -35,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "214e4540e88ae3e7",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "fa8357c91f435f75"
+        ],
+        "x": 35,
+        "y": 420,
+        "wires": [
+            [
+                "ae244d6e284b30de"
+            ]
+        ]
+    },
+    {
+        "id": "ae244d6e284b30de",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Top Tracks",
+        "auth": "934bab396b45618f",
+        "api": "getMyTopTracks",
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "442d9d96f018afff"
+            ]
+        ]
+    },
+    {
+        "id": "9d2cfcaa58ce4ca3",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Me",
+        "auth": "934bab396b45618f",
+        "api": "getMe",
+        "x": 700,
+        "y": 40,
+        "wires": [
+            [
+                "fae26c63e2326f5f"
+            ]
+        ]
+    },
+    {
+        "id": "fae26c63e2326f5f",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Initialise Name",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "flow",
+                "to": "payload.display_name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 40,
+        "wires": [
+            [
+                "7be8214192eafd13"
+            ]
+        ]
+    },
+    {
+        "id": "03e87893769830f2",
+        "type": "spotify",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get Me",
+        "auth": "934bab396b45618f",
+        "api": "getMe",
+        "x": 920,
+        "y": 120,
+        "wires": [
+            [
+                "5cc20d5b94acb1ca"
+            ]
+        ]
+    },
+    {
+        "id": "5cc20d5b94acb1ca",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "Set Name",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "flow",
+                "to": "payload.display_name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 120,
+        "wires": [
+            [
+                "300564b3f2e13fb1"
             ]
         ]
     },
