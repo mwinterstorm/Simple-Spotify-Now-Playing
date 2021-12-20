@@ -13,7 +13,7 @@ Be warned quite hacky at this stage, e.g. reloads whole web page based on calcul
 
 ## To use
 1. Install Node Red
-2. Install node-red-contrib-spotify using Node Red package manager
+2. Install required nodes as set out in [required_nodes.md](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/required_nodes.md)
 3. Import [spotifynodered.json](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/spotifynodered.json) into Node Red
 4. Set up [Spotify Developer Account](https://developer.spotify.com/dashboard/) and new project 
 5. Authorise the Spotify node in Node Red using Project ID and Secret and the [Scopes here](spotify_scopes.md)
