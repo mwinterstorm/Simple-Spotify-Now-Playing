@@ -9,7 +9,7 @@ A very simple webpage for showing the now playing song and album art from a spot
 Be warned quite hacky at this stage, e.g. reloads whole web page based on calculated time to end of current song. Noticeable if you change or skip a song, won't update until song would have finished.
 
 ### Node Red Flows
-![Node Red Flows](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/Readme%20images/NodeRed%20Flows.png)
+![Node Red Flows](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/Readme%20images/flows.jpg)
 
 ## To use
 1. Install Node Red
