@@ -11,7 +11,7 @@
         "type": "http in",
         "z": "f6f2187d.f17ca8",
         "name": "Web Request",
-        "url": "/hello",
+        "url": "/spotify",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
