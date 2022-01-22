@@ -2,7 +2,7 @@
 A simple web page with Node Red to show Spotify now playing song / top artist when not playing
 
 ## Description
-A very simple webpage for showing the now playing song and album art from a spotify account based on Node Red.
+A very simple webpage for showing the now playing song and album art from a spotify account based on Node Red. Includes buttons to pause and skip (although does not work when playing on certain devices e.g. Sonos)
 
 ![example page](https://github.com/mwinterstorm/Simple-Spotify-Now-Playing/blob/main/Readme%20images/page.jpg)
 
