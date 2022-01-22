@@ -18,10 +18,12 @@ Be warned quite hacky at this stage, e.g. reloads whole web page based on calcul
 4. Set up [Spotify Developer Account](https://developer.spotify.com/dashboard/) and new project 
 5. Authorise the Spotify node in Node Red using Project ID and Secret and the [Scopes here](spotify_scopes.md)
 6. Now playing web page is available at http://[your.nodered.ip]/spotify
+7. Uses basic http authorisation [user:admin, password:admin]
 
 ## Options
 You can:
 1. Change web page in Web Request node
 
 ## To do
-1. When nothing playing add in recently played songs
+1. Fix top artists / top tracks screensaver
+1. Slow down screensaver update 

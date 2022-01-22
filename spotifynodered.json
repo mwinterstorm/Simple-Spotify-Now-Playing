@@ -1,79 +1,693 @@
 [
     {
-        "id": "f6f2187d.f17ca8",
+        "id": "e83aa6d3209a38ac",
+        "type": "subflow",
+        "name": "Screensaver",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 68,
+                "y": 112,
+                "wires": [
+                    {
+                        "id": "9a75ee5b583a105d"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1140,
+                "y": 96,
+                "wires": [
+                    {
+                        "id": "9c08e41f22be121c",
+                        "port": 0
+                    },
+                    {
+                        "id": "ca09a18b35fb722a",
+                        "port": 0
+                    },
+                    {
+                        "id": "e397625c6bdccb9a",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "9c08e41f22be121c",
+        "type": "change",
+        "z": "e83aa6d3209a38ac",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.playStatus",
+                "pt": "msg",
+                "to": "Top Artists",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.name",
+                "pt": "msg",
+                "to": "payload.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.name",
+                "pt": "msg",
+                "to": "The songs by ",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[0].url",
+                "pt": "msg",
+                "to": "payload.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[2].url",
+                "pt": "msg",
+                "to": "payload.images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 894,
+        "y": 48,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5880add0610bda0",
+        "type": "spotify",
+        "z": "e83aa6d3209a38ac",
+        "name": "Get Top Artist",
+        "auth": "934bab396b45618f",
+        "api": "getMyTopArtists",
+        "x": 484,
+        "y": 48,
+        "wires": [
+            [
+                "dc56db5cab2d2f93"
+            ]
+        ]
+    },
+    {
+        "id": "dc56db5cab2d2f93",
+        "type": "random-item",
+        "z": "e83aa6d3209a38ac",
+        "name": "Random Artist",
+        "input": "payload.items",
+        "inputType": "msg",
+        "output": "payload",
+        "outputType": "msg",
+        "number": 1,
+        "x": 684,
+        "y": 48,
+        "wires": [
+            [
+                "9c08e41f22be121c"
+            ]
+        ]
+    },
+    {
+        "id": "62de21d8aa365399",
+        "type": "random-item",
+        "z": "e83aa6d3209a38ac",
+        "name": "Random Track",
+        "input": "payload.items",
+        "inputType": "msg",
+        "output": "payload",
+        "outputType": "msg",
+        "number": 1,
+        "x": 684,
+        "y": 108,
+        "wires": [
+            [
+                "e397625c6bdccb9a"
+            ]
+        ]
+    },
+    {
+        "id": "ae4286846f250701",
+        "type": "spotify",
+        "z": "e83aa6d3209a38ac",
+        "name": "Get Top Tracks",
+        "auth": "934bab396b45618f",
+        "api": "getMyTopTracks",
+        "x": 484,
+        "y": 108,
+        "wires": [
+            [
+                "62de21d8aa365399"
+            ]
+        ]
+    },
+    {
+        "id": "2e456486e4c8b746",
+        "type": "random-item",
+        "z": "e83aa6d3209a38ac",
+        "name": "Random Track",
+        "input": "payload.items",
+        "inputType": "msg",
+        "output": "payload",
+        "outputType": "msg",
+        "number": 1,
+        "x": 684,
+        "y": 168,
+        "wires": [
+            [
+                "ca09a18b35fb722a"
+            ]
+        ]
+    },
+    {
+        "id": "b0aad980a1c189fe",
+        "type": "spotify",
+        "z": "e83aa6d3209a38ac",
+        "name": "Get Recent Tracks",
+        "auth": "934bab396b45618f",
+        "api": "getMyRecentlyPlayedTracks",
+        "x": 494,
+        "y": 168,
+        "wires": [
+            [
+                "2e456486e4c8b746"
+            ]
+        ]
+    },
+    {
+        "id": "9a75ee5b583a105d",
+        "type": "random",
+        "z": "e83aa6d3209a38ac",
+        "name": "Random",
+        "low": 1,
+        "high": "3",
+        "inte": "true",
+        "property": "random",
+        "x": 172,
+        "y": 112,
+        "wires": [
+            [
+                "810e0b8400e4aa76"
+            ]
+        ]
+    },
+    {
+        "id": "810e0b8400e4aa76",
+        "type": "switch",
+        "z": "e83aa6d3209a38ac",
+        "name": "",
+        "property": "random",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 306,
+        "y": 112,
+        "wires": [
+            [
+                "b0aad980a1c189fe"
+            ],
+            [
+                "b0aad980a1c189fe"
+            ],
+            [
+                "b0aad980a1c189fe"
+            ]
+        ]
+    },
+    {
+        "id": "ca09a18b35fb722a",
+        "type": "change",
+        "z": "e83aa6d3209a38ac",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.playStatus",
+                "pt": "msg",
+                "to": "Recent Tracks",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.name",
+                "pt": "msg",
+                "to": "payload.track.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.name",
+                "pt": "msg",
+                "to": "payload.track.album.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[0].url",
+                "pt": "msg",
+                "to": "payload.track.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[2].url",
+                "pt": "msg",
+                "to": "payload.track.album.images[2].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.artists[0].name",
+                "pt": "msg",
+                "to": "payload.track.artists[0].name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 894,
+        "y": 176,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e397625c6bdccb9a",
+        "type": "change",
+        "z": "e83aa6d3209a38ac",
+        "name": "Update Now Playing Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.playStatus",
+                "pt": "msg",
+                "to": "Top Tracks",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.name",
+                "pt": "msg",
+                "to": "payload.track.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.name",
+                "pt": "msg",
+                "to": "payload.track.album.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[0].url",
+                "pt": "msg",
+                "to": "payload.track.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.images[2].url",
+                "pt": "msg",
+                "to": "payload.track.album.images[2].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.item.album.artists[0].name",
+                "pt": "msg",
+                "to": "payload.track.artists[0].name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 894,
+        "y": 112,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8adc1d034339c91",
         "type": "tab",
         "label": "Simple Spotify Now Playing",
         "disabled": false,
-        "info": ""
+        "info": "",
+        "env": []
     },
     {
-        "id": "cab7badd01b8dbfe",
+        "id": "42a7934ebca3d4d3",
+        "type": "group",
+        "z": "d8adc1d034339c91",
+        "name": "Main page",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "492cc919c7ed229b",
+            "f1cb321a5618e587",
+            "1442d7b7bbbb4841",
+            "3d9c77a6dc1692be",
+            "3659a282266b315c",
+            "6b3b5c20237a3075",
+            "31d4021e52f9fa95",
+            "f11ce92dbb3f49fe",
+            "b8b18a0697e81421",
+            "d27603b173f558fe",
+            "e59981cd94723dbf",
+            "5b0605a1d150be1d"
+        ],
+        "x": 22,
+        "y": 119,
+        "w": 1320,
+        "h": 130
+    },
+    {
+        "id": "65d18faaf3f34dc5",
+        "type": "group",
+        "z": "d8adc1d034339c91",
+        "name": "Initialise on Deploy",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f6c7fc251182f80d",
+            "4ad426033018fe20",
+            "bb07c22b31237e41",
+            "17a9243073ceadf7",
+            "f19364596c3f5308",
+            "184c31bf0b1328f7"
+        ],
+        "x": 18,
+        "y": 23,
+        "w": 1288,
+        "h": 82
+    },
+    {
+        "id": "11ac263522ac6589",
+        "type": "group",
+        "z": "d8adc1d034339c91",
+        "name": "Buttons",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "db92836dc45ed445",
+            "50a7672d7938696a",
+            "264917efd204ea70",
+            "ebd35952b55ff9d4",
+            "51812597ce3fbdfa",
+            "cbe43b404f2af4f2",
+            "6a3159b7d6ebaea6",
+            "973210c850ad1522",
+            "adcb72fa067e7f8b",
+            "2e578f219497998f",
+            "1731fc267ba23569"
+        ],
+        "x": 22,
+        "y": 263,
+        "w": 1004,
+        "h": 178
+    },
+    {
+        "id": "99946da8b4d94723",
+        "type": "group",
+        "z": "d8adc1d034339c91",
+        "name": "InfoRefresh",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "2c14e7348516f78f",
+            "5087a5945f7bc7be",
+            "f6d2f9f111671594",
+            "3c7a3db57c75efcc",
+            "b1ba4fde9e60fd01",
+            "5b50922751a4a290",
+            "7b40e428bf0417c2",
+            "7aa7674b828f0514",
+            "161a9de5c07c7b23",
+            "b09a86f3f63bbb64",
+            "7c5c9742bd1accc7"
+        ],
+        "x": 22,
+        "y": 455,
+        "w": 1244,
+        "h": 146
+    },
+    {
+        "id": "b09a86f3f63bbb64",
+        "type": "change",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "css",
+                "pt": "msg",
+                "to": "image",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1012,
+        "y": 512,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "492cc919c7ed229b",
         "type": "http in",
-        "z": "f6f2187d.f17ca8",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
         "name": "Web Request",
         "url": "/spotify",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 90,
-        "y": 80,
+        "x": 118,
+        "y": 160,
         "wires": [
             [
-                "1f8621502fd25281"
+                "3d9c77a6dc1692be",
+                "3659a282266b315c"
             ]
         ]
     },
     {
-        "id": "97a03cbb753a4ec8",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 370,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "eb5dba838f4a8d4a",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "html",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
-        "output": "str",
-        "x": 250,
-        "y": 240,
-        "wires": [
-            [
-                "97a03cbb753a4ec8"
-            ]
-        ]
-    },
-    {
-        "id": "c03efdbb927399c4",
+        "id": "f1cb321a5618e587",
         "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Current Track",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
         "auth": "934bab396b45618f",
-        "api": "getMyCurrentPlayingTrack",
-        "x": 170,
-        "y": 140,
+        "api": "getMyCurrentPlaybackState",
+        "x": 520,
+        "y": 160,
         "wires": [
             [
-                "c179d20b16bbd921",
-                "3361c521f8511819"
+                "1442d7b7bbbb4841"
             ]
         ]
     },
     {
-        "id": "c179d20b16bbd921",
+        "id": "1442d7b7bbbb4841",
+        "type": "switch",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
+        "property": "payload.is_playing",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "true",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 722,
+        "y": 160,
+        "wires": [
+            [
+                "31d4021e52f9fa95"
+            ],
+            [
+                "f11ce92dbb3f49fe"
+            ]
+        ]
+    },
+    {
+        "id": "f6c7fc251182f80d",
+        "type": "inject",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "Initialise",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 124,
+        "y": 64,
+        "wires": [
+            [
+                "f19364596c3f5308"
+            ]
+        ]
+    },
+    {
+        "id": "4ad426033018fe20",
         "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Update Now Playing Data",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "Initialise reload in seconds",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reload",
+                "pt": "flow",
+                "to": "15",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 64,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb07c22b31237e41",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "Get Me",
+        "auth": "934bab396b45618f",
+        "api": "getMe",
+        "x": 780,
+        "y": 64,
+        "wires": [
+            [
+                "17a9243073ceadf7"
+            ]
+        ]
+    },
+    {
+        "id": "17a9243073ceadf7",
+        "type": "change",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "Initialise Name",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "flow",
+                "to": "payload.display_name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 944,
+        "y": 64,
+        "wires": [
+            [
+                "4ad426033018fe20"
+            ]
+        ]
+    },
+    {
+        "id": "f19364596c3f5308",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlaybackState",
+        "x": 324,
+        "y": 64,
+        "wires": [
+            [
+                "184c31bf0b1328f7"
+            ]
+        ]
+    },
+    {
+        "id": "184c31bf0b1328f7",
+        "type": "change",
+        "z": "d8adc1d034339c91",
+        "g": "65d18faaf3f34dc5",
+        "name": "Initialise Now Playing Data",
         "rules": [
             {
                 "t": "set",
@@ -116,253 +730,294 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 470,
+        "x": 584,
+        "y": 64,
+        "wires": [
+            [
+                "bb07c22b31237e41"
+            ]
+        ]
+    },
+    {
+        "id": "db92836dc45ed445",
+        "type": "http in",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "url": "/pause",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 118,
+        "y": 304,
+        "wires": [
+            [
+                "1731fc267ba23569"
+            ]
+        ]
+    },
+    {
+        "id": "50a7672d7938696a",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "auth": "03c549ed8930bddb",
+        "api": "pause",
+        "x": 818,
+        "y": 304,
+        "wires": [
+            [
+                "973210c850ad1522"
+            ]
+        ]
+    },
+    {
+        "id": "264917efd204ea70",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlaybackState",
+        "x": 456,
+        "y": 304,
+        "wires": [
+            [
+                "ebd35952b55ff9d4"
+            ]
+        ]
+    },
+    {
+        "id": "ebd35952b55ff9d4",
+        "type": "switch",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "property": "payload.is_playing",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 658,
+        "y": 304,
+        "wires": [
+            [
+                "50a7672d7938696a"
+            ],
+            [
+                "51812597ce3fbdfa"
+            ]
+        ]
+    },
+    {
+        "id": "51812597ce3fbdfa",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "auth": "03c549ed8930bddb",
+        "api": "play",
+        "x": 786,
+        "y": 352,
+        "wires": [
+            [
+                "973210c850ad1522"
+            ]
+        ]
+    },
+    {
+        "id": "cbe43b404f2af4f2",
+        "type": "http in",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "url": "/skip",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 126,
+        "y": 400,
+        "wires": [
+            [
+                "adcb72fa067e7f8b"
+            ]
+        ]
+    },
+    {
+        "id": "6a3159b7d6ebaea6",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "auth": "03c549ed8930bddb",
+        "api": "skipToNext",
+        "x": 406,
+        "y": 400,
+        "wires": [
+            [
+                "973210c850ad1522"
+            ]
+        ]
+    },
+    {
+        "id": "973210c850ad1522",
+        "type": "http response",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 940,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3d9c77a6dc1692be",
+        "type": "node-red-contrib-basicauth",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
+        "realm": "spotify",
+        "username": "admin",
+        "password": "admin",
+        "x": 294,
         "y": 160,
         "wires": [
+            [
+                "f1cb321a5618e587"
+            ],
             []
         ]
     },
     {
-        "id": "13513f4646d7cf37",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "css",
-        "field": "css",
-        "fieldType": "flow",
-        "format": "css",
-        "syntax": "mustache",
-        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
-        "output": "str",
-        "x": 130,
-        "y": 240,
+        "id": "2c14e7348516f78f",
+        "type": "http in",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "Web Request",
+        "url": "/spotifystatus",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 118,
+        "y": 512,
         "wires": [
             [
-                "eb5dba838f4a8d4a"
+                "b1ba4fde9e60fd01"
             ]
         ]
     },
     {
-        "id": "20f221588d1d91fc",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Calc remaining seconds",
-        "func": "msg.reload = 1 + ( msg.duration - msg.position ) / 1000;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 410,
-        "y": 200,
-        "wires": [
-            [
-                "3cfc234a3f1215a6"
-            ]
-        ]
-    },
-    {
-        "id": "3cfc234a3f1215a6",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set reload in seconds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reload",
-                "pt": "flow",
-                "to": "reload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 640,
-        "y": 200,
-        "wires": [
-            [
-                "13513f4646d7cf37"
-            ]
-        ]
-    },
-    {
-        "id": "3361c521f8511819",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Update Reload Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "duration",
-                "pt": "msg",
-                "to": "payload.item.duration_ms",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "position",
-                "pt": "msg",
-                "to": "payload.progress_ms",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 180,
-        "y": 200,
-        "wires": [
-            [
-                "20f221588d1d91fc"
-            ]
-        ]
-    },
-    {
-        "id": "a6e9a885ea9425c2",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "Initialise",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 40,
-        "wires": [
-            [
-                "5493655477b5e924"
-            ]
-        ]
-    },
-    {
-        "id": "a21b4d2f29334b27",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Initialise Now Playing Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "image",
-                "pt": "flow",
-                "to": "payload.items[0].track.album.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "payload.items[0].track.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.items[0].track.artists[0].name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "payload.items[0].track.album.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "favicon",
-                "pt": "flow",
-                "to": "payload.items[0].track.album.images[2].url",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 500,
-        "y": 40,
-        "wires": [
-            [
-                "9d2cfcaa58ce4ca3"
-            ]
-        ]
-    },
-    {
-        "id": "7be8214192eafd13",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Initialise reload in seconds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reload",
-                "pt": "flow",
-                "to": "15",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1080,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5493655477b5e924",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Recent Tracks",
-        "auth": "934bab396b45618f",
-        "api": "getMyRecentlyPlayedTracks",
-        "x": 270,
-        "y": 40,
-        "wires": [
-            [
-                "a21b4d2f29334b27"
-            ]
-        ]
-    },
-    {
-        "id": "bfecb051f3e03267",
-        "type": "counter",
-        "z": "f6f2187d.f17ca8",
-        "inc": 1,
+        "id": "5087a5945f7bc7be",
+        "type": "http response",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
         "name": "",
-        "x": 380,
-        "y": 120,
+        "statusCode": "200",
+        "headers": {},
+        "x": 1180,
+        "y": 496,
+        "wires": []
+    },
+    {
+        "id": "f6d2f9f111671594",
+        "type": "spotify",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlaybackState",
+        "x": 456,
+        "y": 544,
         "wires": [
             [
-                "0cc3ca40d6b5af70"
+                "7b40e428bf0417c2"
             ]
         ]
     },
     {
-        "id": "0cc3ca40d6b5af70",
+        "id": "3c7a3db57c75efcc",
+        "type": "http response",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 396,
+        "y": 496,
+        "wires": []
+    },
+    {
+        "id": "b1ba4fde9e60fd01",
+        "type": "switch",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "property": "req.headers.authentication",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "authstatus",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "authstatus",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 258,
+        "y": 512,
+        "wires": [
+            [
+                "3c7a3db57c75efcc"
+            ],
+            [
+                "f6d2f9f111671594"
+            ]
+        ]
+    },
+    {
+        "id": "3659a282266b315c",
+        "type": "random",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
+        "low": "100000000",
+        "high": "999999999",
+        "inte": "true",
+        "property": "payload",
+        "x": 284,
+        "y": 208,
+        "wires": [
+            [
+                "6b3b5c20237a3075"
+            ]
+        ]
+    },
+    {
+        "id": "6b3b5c20237a3075",
         "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set Counter",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
         "rules": [
             {
                 "t": "set",
-                "p": "reload_counter",
+                "p": "authstatus",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -373,32 +1028,59 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 530,
-        "y": 120,
+        "x": 458,
+        "y": 208,
         "wires": [
             []
         ]
     },
     {
-        "id": "1f8621502fd25281",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get if playing",
-        "auth": "934bab396b45618f",
-        "api": "getMyCurrentPlaybackState",
-        "x": 250,
-        "y": 80,
+        "id": "5b50922751a4a290",
+        "type": "change",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.playStatus",
+                "pt": "msg",
+                "to": "Now Playing",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.item.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.playpause",
+                "pt": "msg",
+                "to": "Pause",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 496,
         "wires": [
             [
-                "37c4d814a13814f6",
-                "bfecb051f3e03267"
+                "7c5c9742bd1accc7"
             ]
         ]
     },
     {
-        "id": "37c4d814a13814f6",
+        "id": "7b40e428bf0417c2",
         "type": "switch",
-        "z": "f6f2187d.f17ca8",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
         "name": "",
         "property": "payload.is_playing",
         "propertyType": "msg",
@@ -415,521 +1097,137 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 630,
-        "y": 80,
+        "x": 642,
+        "y": 544,
         "wires": [
             [
-                "534f6731c4f799ac"
+                "5b50922751a4a290"
             ],
             [
-                "19e6d616ae22b910"
+                "7aa7674b828f0514"
             ]
         ]
     },
     {
-        "id": "534f6731c4f799ac",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "0cfa207ed85d3096"
-        ],
-        "x": 735,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "86b9203d44e46632",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "4c4e50cd31dd3423",
-            "3593b8912a56695a"
-        ],
-        "x": 1275,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "0cfa207ed85d3096",
-        "type": "link in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "534f6731c4f799ac"
-        ],
-        "x": 35,
-        "y": 140,
-        "wires": [
-            [
-                "c03efdbb927399c4"
-            ]
-        ]
-    },
-    {
-        "id": "0b2f14562edc39ab",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 370,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "b8f6ee61efa8704b",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "html",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}'s Top Artists</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
-        "output": "str",
-        "x": 250,
-        "y": 360,
-        "wires": [
-            [
-                "0b2f14562edc39ab"
-            ]
-        ]
-    },
-    {
-        "id": "ca078428b2bb4395",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Update Now Playing Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "image",
-                "pt": "flow",
-                "to": "payload.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "username",
-                "tot": "flow"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "The songs ",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "favicon",
-                "pt": "flow",
-                "to": "payload.images[2].url",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 550,
-        "y": 300,
-        "wires": [
-            [
-                "69830c336f657e2d"
-            ]
-        ]
-    },
-    {
-        "id": "2c017c418b2ad24d",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "css",
-        "field": "css",
-        "fieldType": "flow",
-        "format": "css",
-        "syntax": "mustache",
-        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
-        "output": "str",
-        "x": 130,
-        "y": 360,
-        "wires": [
-            [
-                "b8f6ee61efa8704b"
-            ]
-        ]
-    },
-    {
-        "id": "69830c336f657e2d",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set reload in seconds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reload",
-                "pt": "flow",
-                "to": "60",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 780,
-        "y": 300,
-        "wires": [
-            [
-                "2c017c418b2ad24d"
-            ]
-        ]
-    },
-    {
-        "id": "4c4e50cd31dd3423",
-        "type": "link in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "86b9203d44e46632"
-        ],
-        "x": 45,
-        "y": 300,
-        "wires": [
-            [
-                "09b1becf0cacaa9a"
-            ]
-        ]
-    },
-    {
-        "id": "09b1becf0cacaa9a",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Top Artist",
-        "auth": "934bab396b45618f",
-        "api": "getMyTopArtists",
-        "x": 160,
-        "y": 300,
-        "wires": [
-            [
-                "aee9046f9cae91ec"
-            ]
-        ]
-    },
-    {
-        "id": "aee9046f9cae91ec",
-        "type": "random-item",
-        "z": "f6f2187d.f17ca8",
-        "name": "Random Artist",
-        "input": "payload.items",
-        "inputType": "msg",
-        "output": "payload",
-        "outputType": "msg",
-        "number": 1,
-        "x": 340,
-        "y": 300,
-        "wires": [
-            [
-                "ca078428b2bb4395"
-            ]
-        ]
-    },
-    {
-        "id": "3f133b32943e9b62",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 370,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "3344a35c3d0619de",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "html",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>{{flow.trackname}}</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <meta http-equiv=\"refresh\" content=\"{{{flow.reload}}}\">\n    <link rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <style>\n        {{{flow.css}}}\n    </style>\n</head>\n\n<body>\n<div class=\"bg-image\"></div>\n\n<div class=\"playing\">\n  <div class=\"album-data\">\n    <h1>{{{flow.trackname}}}'s Top Songs</h1>\n    <img src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3>{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n</div>\n</body>\n</html>",
-        "output": "str",
-        "x": 250,
-        "y": 480,
-        "wires": [
-            [
-                "3f133b32943e9b62"
-            ]
-        ]
-    },
-    {
-        "id": "29fa27f379ff3ff6",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Update Now Playing Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "image",
-                "pt": "flow",
-                "to": "payload.album.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "username",
-                "tot": "flow"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.artists[0].name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "payload.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "favicon",
-                "pt": "flow",
-                "to": "payload.album.images[2].url",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 550,
-        "y": 420,
-        "wires": [
-            [
-                "79d2c18af672b994"
-            ]
-        ]
-    },
-    {
-        "id": "fa04dd240a5ab2b1",
-        "type": "template",
-        "z": "f6f2187d.f17ca8",
-        "name": "css",
-        "field": "css",
-        "fieldType": "flow",
-        "format": "css",
-        "syntax": "mustache",
-        "template": "body, html {\n  height: 140%;\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n  background-color: black;\n  overflow: hidden;\n}\n\n.bg-image {\n  background-image: url(\"{{{flow.image}}}\");\n  filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n  height: 110%; \n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n\n.playing {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 2;\n  width: 80%;\n  display: flex;\n}\n\n/* Position text in the middle of the page/image */\n.song-text {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  border-radius: 25px;\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  align-self: center;\n  padding: 1.5%;\n  display: block;\n  height: fit-content;\n}\n\n/* Position text in the middle of the page/image */\n.album-data {\n  background-color: rgb(0,0,0); /* Fallback color */\n  background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n  color: rgb(255, 255, 255);\n  font-weight: bold;\n  text-align: right;\n  display: block;\n}\n.image-responsive {\n  width: 75%;\n  height: auto;\n  border-radius: 25px;\n}",
-        "output": "str",
-        "x": 130,
-        "y": 480,
-        "wires": [
-            [
-                "3344a35c3d0619de"
-            ]
-        ]
-    },
-    {
-        "id": "79d2c18af672b994",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set reload in seconds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reload",
-                "pt": "flow",
-                "to": "60",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 780,
-        "y": 420,
-        "wires": [
-            [
-                "fa04dd240a5ab2b1"
-            ]
-        ]
-    },
-    {
-        "id": "442d9d96f018afff",
-        "type": "random-item",
-        "z": "f6f2187d.f17ca8",
-        "name": "Random Artist",
-        "input": "payload.items",
-        "inputType": "msg",
-        "output": "payload",
-        "outputType": "msg",
-        "number": 1,
-        "x": 340,
-        "y": 420,
-        "wires": [
-            [
-                "29fa27f379ff3ff6"
-            ]
-        ]
-    },
-    {
-        "id": "19e6d616ae22b910",
-        "type": "random",
-        "z": "f6f2187d.f17ca8",
-        "name": "Random",
-        "low": 1,
-        "high": "2",
-        "inte": "true",
-        "property": "random",
-        "x": 780,
-        "y": 120,
-        "wires": [
-            [
-                "03e87893769830f2"
-            ]
-        ]
-    },
-    {
-        "id": "300564b3f2e13fb1",
+        "id": "adcb72fa067e7f8b",
         "type": "switch",
-        "z": "f6f2187d.f17ca8",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
         "name": "",
-        "property": "random",
+        "property": "req.headers.authentication",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
+                "t": "neq",
+                "v": "authstatus",
+                "vt": "flow"
             },
             {
                 "t": "eq",
-                "v": "2",
-                "vt": "str"
+                "v": "authstatus",
+                "vt": "flow"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1190,
-        "y": 120,
+        "x": 258,
+        "y": 400,
         "wires": [
             [
-                "86b9203d44e46632"
+                "2e578f219497998f"
             ],
             [
-                "fa8357c91f435f75"
+                "6a3159b7d6ebaea6"
             ]
         ]
     },
     {
-        "id": "fa8357c91f435f75",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
+        "id": "2e578f219497998f",
+        "type": "http response",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
         "name": "",
-        "mode": "link",
-        "links": [
-            "214e4540e88ae3e7"
-        ],
-        "x": 1275,
-        "y": 140,
+        "statusCode": "401",
+        "headers": {},
+        "x": 380,
+        "y": 352,
         "wires": []
     },
     {
-        "id": "659deb8bdd7bd36d",
-        "type": "link in",
-        "z": "f6f2187d.f17ca8",
+        "id": "1731fc267ba23569",
+        "type": "switch",
+        "z": "d8adc1d034339c91",
+        "g": "11ac263522ac6589",
         "name": "",
-        "links": [],
-        "x": -35,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "214e4540e88ae3e7",
-        "type": "link in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "fa8357c91f435f75"
+        "property": "req.headers.authentication",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "authstatus",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "authstatus",
+                "vt": "flow"
+            }
         ],
-        "x": 35,
-        "y": 420,
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 258,
+        "y": 304,
         "wires": [
             [
-                "ae244d6e284b30de"
+                "2e578f219497998f"
+            ],
+            [
+                "264917efd204ea70"
             ]
         ]
     },
     {
-        "id": "ae244d6e284b30de",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Top Tracks",
-        "auth": "934bab396b45618f",
-        "api": "getMyTopTracks",
-        "x": 160,
-        "y": 420,
-        "wires": [
-            [
-                "442d9d96f018afff"
-            ]
-        ]
-    },
-    {
-        "id": "9d2cfcaa58ce4ca3",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Me",
-        "auth": "934bab396b45618f",
-        "api": "getMe",
-        "x": 700,
-        "y": 40,
-        "wires": [
-            [
-                "fae26c63e2326f5f"
-            ]
-        ]
-    },
-    {
-        "id": "fae26c63e2326f5f",
+        "id": "31d4021e52f9fa95",
         "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Initialise Name",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "Set Now Playing Data",
         "rules": [
             {
                 "t": "set",
-                "p": "username",
+                "p": "image",
                 "pt": "flow",
-                "to": "payload.display_name",
+                "to": "payload.item.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "payload.item.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.item.artists[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "payload.item.album.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.item.album.images[2].url",
                 "tot": "msg"
             }
         ],
@@ -938,41 +1236,142 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 860,
-        "y": 40,
+        "x": 900,
+        "y": 160,
         "wires": [
             [
-                "7be8214192eafd13"
+                "e59981cd94723dbf"
             ]
         ]
     },
     {
-        "id": "03e87893769830f2",
-        "type": "spotify",
-        "z": "f6f2187d.f17ca8",
-        "name": "Get Me",
-        "auth": "934bab396b45618f",
-        "api": "getMe",
-        "x": 920,
-        "y": 120,
+        "id": "f11ce92dbb3f49fe",
+        "type": "subflow:e83aa6d3209a38ac",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
+        "x": 742,
+        "y": 208,
         "wires": [
             [
-                "5cc20d5b94acb1ca"
+                "5b0605a1d150be1d"
             ]
         ]
     },
     {
-        "id": "5cc20d5b94acb1ca",
+        "id": "d27603b173f558fe",
+        "type": "http response",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1266,
+        "y": 208,
+        "wires": []
+    },
+    {
+        "id": "b8b18a0697e81421",
+        "type": "template",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title id=\"id_track\">{{flow.trackname}}</title>\n    <link id=\"id_favicon\" rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <style>{{{flow.css}}}</style>\n    <!-- SCRIPTS -->\n    <script src=\"https://code.jquery.com/jquery-3.5.1.js\"></script>\n    <script type=\"text/javascript\">    \n    // Update info every 6 seconds\n        $(document).ready(function() {\n            setInterval(updateInfo, 6000); \n        });\n    </script> \n    <script>\n        async function updateInfo() {\n            let response = await fetch(\"/spotifystatus\", {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) { \n                let currentTrack = document.getElementById(\"id_track\").innerHTML\n                let jsonObject = await response.json();\n                let setTrack = jsonObject.item.name;\n                if (currentTrack != setTrack) {\n                    // Update track name\n                    document.getElementById(\"id_track\").innerHTML = setTrack;\n                    // Update caption above image\n                    let setStatus = jsonObject.playStatus;\n                    document.getElementById(\"id_statusTrack\").innerHTML = setStatus + \": \" + setTrack;\n                    // Update caption under image\n                    let setAlbum = jsonObject.item.album.name;\n                    let setArtist = jsonObject.item.album.artists[0].name;\n                    document.getElementById(\"id_albumArtist\").innerHTML = setAlbum + \" by \" + setArtist;\n                    // Update image\n                    let setAlbumArt = jsonObject.item.album.images[0].url;\n                    document.getElementById(\"id_albumArt\").src = setAlbumArt;\n                    // Update favicon\n                    let setFavicon = jsonObject.item.album.images[2].url;\n                    document.getElementById(\"id_favicon\").href = setFavicon;\n                    // update background image\n                    let setCSS = jsonObject.css;\n                    document.getElementById(\"id_css\").style = setCSS;\n                    // update play / pause button\n                    let setPause = jsonObject.playpause;\n                    document.getElementById(\"id_pausebutton\").value = setPause;\n                } else {\n                    // update play / pause button\n                    let setPause = jsonObject.playpause;\n                    if (document.getElementById(\"id_pausebutton\").value != setPause) {\n                        document.getElementById(\"id_pausebutton\").value = setPause;\n                    }\n                }\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n\n    <script type=\"text/javascript\">\n        // Script for skip button\n        async function skip() {\n            let response = await fetch('/skip', {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) {\n                setTimeout(updateInfo, 1450);\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n    <script type=\"text/javascript\">\n        // Script for play / pause button\n        async function playpause() {\n            let response = await fetch('/pause', {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) {\n                let jsonPause = await response.json();\n                let setPause = jsonPause.playpause;\n                document.getElementById(\"id_pausebutton\").value = setPause;\n                setTimeout(updateInfo, 1450);\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n</head>\n\n<body>\n<div id=\"id_css\" class=\"bg-image\" style=\"background-image:url({{flow.image}});\"></div>\n\n<div class=\"playing\" id=\"playing\">\n    \n  <div class=\"album-data\">\n    <h1 id=\"id_statusTrack\">{{{flow.status}}} {{{flow.trackname}}}</h1>\n    <img id=\"id_albumArt\" src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3 id=\"id_albumArtist\">{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n  \n  <div class=\"button\">\n<!-- START: Skip button -->\n    <input type=\"submit\" class=\"button1\" value=\"Skip\" onclick=\"skip()\">\n<!-- START: Pause Button-->\n    <input id=\"id_pausebutton\" type=\"submit\" class=\"button2\" value=\"Play / Pause\" onclick=\"playpause()\">\n  </div>\n\n</div>\n</body>\n</html>",
+        "output": "str",
+        "x": 1122,
+        "y": 208,
+        "wires": [
+            [
+                "d27603b173f558fe"
+            ]
+        ]
+    },
+    {
+        "id": "e59981cd94723dbf",
+        "type": "template",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "css",
+        "field": "css",
+        "fieldType": "flow",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "body, html {\n    height: 140%;\n    margin: 0;\n    font-family: Arial, Helvetica, sans-serif;\n    background-color: black;\n    overflow: hidden;\n  }\n  \n  .bg-image {\n    filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n    -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n    height: 110%; \n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n  }\n  \n  .playing {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    z-index: 2;\n    width: 80%;\n    display: flex;\n  }\n  \n/* New trying to add button */\n\n  .button {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n\n  }\n\n  .button1 {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(60, 221, 173, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    margin: 4px 2px;\n    cursor: pointer;\n  }\n\n  .button2 {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(60, 221, 173, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    margin: 4px 2px;\n    cursor: pointer;\n  }\n\n/* END BUTTON *?\n\n  /* Position text in the middle of the page/image */\n  .song-text {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0, 0, 0, 0); /* Black w/opacity/see-through */\n    border-radius: 25px;\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    text-align: right;\n    align-self: center;\n    padding: 1.5%;\n    display: block;\n    height: fit-content;\n  }\n  \n  /* Position text in the middle of the page/image */\n  .album-data {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    text-align: right;\n    display: block;\n  }\n  .image-responsive {\n    width: 75%;\n    height: auto;\n    border-radius: 25px;\n  }",
+        "output": "str",
+        "x": 1106,
+        "y": 160,
+        "wires": [
+            [
+                "b8b18a0697e81421"
+            ]
+        ]
+    },
+    {
+        "id": "7aa7674b828f0514",
+        "type": "subflow:e83aa6d3209a38ac",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "161a9de5c07c7b23"
+            ]
+        ]
+    },
+    {
+        "id": "5b0605a1d150be1d",
         "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "Set Name",
+        "z": "d8adc1d034339c91",
+        "g": "42a7934ebca3d4d3",
+        "name": "Initial Data",
         "rules": [
             {
                 "t": "set",
-                "p": "username",
+                "p": "image",
                 "pt": "flow",
-                "to": "payload.display_name",
+                "to": "payload.track.album.images[0].url",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "trackname",
+                "pt": "flow",
+                "to": "username",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "artistname",
+                "pt": "flow",
+                "to": "payload.track.artists[0].name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "albumname",
+                "pt": "flow",
+                "to": "payload.track.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.track.album.images[2].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "status",
+                "pt": "flow",
+                "to": "Recent Songs:",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -980,11 +1379,66 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1060,
-        "y": 120,
+        "x": 918,
+        "y": 208,
         "wires": [
             [
-                "300564b3f2e13fb1"
+                "e59981cd94723dbf"
+            ]
+        ]
+    },
+    {
+        "id": "161a9de5c07c7b23",
+        "type": "change",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.track.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.playpause",
+                "pt": "msg",
+                "to": "Play",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 958,
+        "y": 560,
+        "wires": [
+            [
+                "7c5c9742bd1accc7"
+            ]
+        ]
+    },
+    {
+        "id": "7c5c9742bd1accc7",
+        "type": "template",
+        "z": "d8adc1d034339c91",
+        "g": "99946da8b4d94723",
+        "name": "Set bg image",
+        "field": "payload.css",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "background-image:url({{{flow.image}}});",
+        "output": "str",
+        "x": 1014,
+        "y": 496,
+        "wires": [
+            [
+                "5087a5945f7bc7be"
             ]
         ]
     },
@@ -993,5 +1447,12 @@
         "type": "spotify-auth",
         "name": "Spotify",
         "scope": "user-read-playback-state\nuser-read-private\nuser-follow-read\nuser-library-read\nuser-read-playback-position\nplaylist-read-private\nuser-top-read\nuser-read-currently-playing\nuser-read-recently-played"
+    },
+    {
+        "id": "03c549ed8930bddb",
+        "type": "spotify-auth",
+        "name": "Spotify All Scopes",
+        "scope": "user-read-playback-state\nuser-modify-playback-state\nuser-read-private\nuser-follow-modify\nugc-image-upload\nuser-follow-read\nuser-library-modify\nuser-library-read\nstreaming\nuser-read-playback-position\nplaylist-modify-private\nplaylist-read-collaborative\napp-remote-control\nuser-read-email\nplaylist-read-private\nuser-top-read\nplaylist-modify-public\nuser-read-currently-playing\nuser-read-recently-played",
+        "info": "noderedweball"
     }
 ]
