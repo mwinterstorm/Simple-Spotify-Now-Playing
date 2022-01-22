@@ -1441,18 +1441,5 @@
                 "5087a5945f7bc7be"
             ]
         ]
-    },
-    {
-        "id": "934bab396b45618f",
-        "type": "spotify-auth",
-        "name": "Spotify",
-        "scope": "user-read-playback-state\nuser-read-private\nuser-follow-read\nuser-library-read\nuser-read-playback-position\nplaylist-read-private\nuser-top-read\nuser-read-currently-playing\nuser-read-recently-played"
-    },
-    {
-        "id": "03c549ed8930bddb",
-        "type": "spotify-auth",
-        "name": "Spotify All Scopes",
-        "scope": "user-read-playback-state\nuser-modify-playback-state\nuser-read-private\nuser-follow-modify\nugc-image-upload\nuser-follow-read\nuser-library-modify\nuser-library-read\nstreaming\nuser-read-playback-position\nplaylist-modify-private\nplaylist-read-collaborative\napp-remote-control\nuser-read-email\nplaylist-read-private\nuser-top-read\nplaylist-modify-public\nuser-read-currently-playing\nuser-read-recently-played",
-        "info": "noderedweball"
     }
 ]
