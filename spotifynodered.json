@@ -1,5 +1,48 @@
 [
     {
+        "id": "2654f070e3870c4b",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "name": "/spotify",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "09be260be195cd7f",
+            "e704461c03c787f0",
+            "1e0790ad9ecd35a4",
+            "f70e88b4c3dab11d",
+            "760717e21b1612bd"
+        ],
+        "x": 204,
+        "y": 189,
+        "w": 1232,
+        "h": 774
+    },
+    {
+        "id": "09be260be195cd7f",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "g": "2654f070e3870c4b",
+        "name": "Main page",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b852d5829934f97f",
+            "39f64dd8aff764b6",
+            "277881d8699aa50a",
+            "ade6b2d59b516cf8",
+            "a5fd213f815476a1",
+            "7b7b2270bacb4e17",
+            "139c9f2832a85c54"
+        ],
+        "x": 310,
+        "y": 807,
+        "w": 1096,
+        "h": 130
+    },
+    {
         "id": "e83aa6d3209a38ac",
         "type": "subflow",
         "name": "Screensaver",
@@ -184,8 +227,8 @@
         "name": "Get Recent Tracks",
         "auth": "934bab396b45618f",
         "api": "getMyRecentlyPlayedTracks",
-        "x": 494,
-        "y": 168,
+        "x": 554,
+        "y": 208,
         "wires": [
             [
                 "2e456486e4c8b746"
@@ -219,34 +262,22 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "1",
+                "v": "183540qegh",
                 "vt": "str"
             },
             {
-                "t": "eq",
-                "v": "2",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "3",
-                "vt": "str"
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 3,
+        "outputs": 2,
         "x": 306,
         "y": 112,
         "wires": [
+            [],
             [
-                "b0aad980a1c189fe"
-            ],
-            [
-                "b0aad980a1c189fe"
-            ],
-            [
-                "b0aad980a1c189fe"
+                "2ad69528e1b8419e"
             ]
         ]
     },
@@ -371,179 +402,45 @@
         ]
     },
     {
-        "id": "d8adc1d034339c91",
-        "type": "tab",
-        "label": "Simple Spotify Now Playing",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "42a7934ebca3d4d3",
-        "type": "group",
-        "z": "d8adc1d034339c91",
-        "name": "Main page",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "492cc919c7ed229b",
-            "f1cb321a5618e587",
-            "1442d7b7bbbb4841",
-            "3d9c77a6dc1692be",
-            "3659a282266b315c",
-            "6b3b5c20237a3075",
-            "31d4021e52f9fa95",
-            "f11ce92dbb3f49fe",
-            "b8b18a0697e81421",
-            "d27603b173f558fe",
-            "e59981cd94723dbf",
-            "5b0605a1d150be1d"
-        ],
-        "x": 22,
-        "y": 119,
-        "w": 1320,
-        "h": 130
-    },
-    {
-        "id": "65d18faaf3f34dc5",
-        "type": "group",
-        "z": "d8adc1d034339c91",
-        "name": "Initialise on Deploy",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "f6c7fc251182f80d",
-            "4ad426033018fe20",
-            "bb07c22b31237e41",
-            "17a9243073ceadf7",
-            "f19364596c3f5308",
-            "184c31bf0b1328f7"
-        ],
-        "x": 18,
-        "y": 23,
-        "w": 1288,
-        "h": 82
-    },
-    {
-        "id": "11ac263522ac6589",
-        "type": "group",
-        "z": "d8adc1d034339c91",
-        "name": "Buttons",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "db92836dc45ed445",
-            "50a7672d7938696a",
-            "264917efd204ea70",
-            "ebd35952b55ff9d4",
-            "51812597ce3fbdfa",
-            "cbe43b404f2af4f2",
-            "6a3159b7d6ebaea6",
-            "973210c850ad1522",
-            "adcb72fa067e7f8b",
-            "2e578f219497998f",
-            "1731fc267ba23569"
-        ],
-        "x": 22,
-        "y": 263,
-        "w": 1004,
-        "h": 178
-    },
-    {
-        "id": "99946da8b4d94723",
-        "type": "group",
-        "z": "d8adc1d034339c91",
-        "name": "InfoRefresh",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "2c14e7348516f78f",
-            "5087a5945f7bc7be",
-            "f6d2f9f111671594",
-            "3c7a3db57c75efcc",
-            "b1ba4fde9e60fd01",
-            "5b50922751a4a290",
-            "7b40e428bf0417c2",
-            "7aa7674b828f0514",
-            "161a9de5c07c7b23",
-            "b09a86f3f63bbb64",
-            "7c5c9742bd1accc7"
-        ],
-        "x": 22,
-        "y": 455,
-        "w": 1244,
-        "h": 146
-    },
-    {
-        "id": "b09a86f3f63bbb64",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "id": "2ad69528e1b8419e",
+        "type": "function",
+        "z": "e83aa6d3209a38ac",
         "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "css",
-                "pt": "msg",
-                "to": "image",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1012,
-        "y": 512,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "492cc919c7ed229b",
-        "type": "http in",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "Web Request",
-        "url": "/spotify",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 118,
-        "y": 160,
+        "func": "msg.params = [\n    { limit: 50} /* Options */\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 208,
         "wires": [
             [
-                "3d9c77a6dc1692be",
-                "3659a282266b315c"
+                "b0aad980a1c189fe"
             ]
         ]
     },
     {
-        "id": "f1cb321a5618e587",
+        "id": "b852d5829934f97f",
         "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
         "name": "",
         "auth": "934bab396b45618f",
         "api": "getMyCurrentPlaybackState",
-        "x": 520,
-        "y": 160,
+        "x": 456,
+        "y": 848,
         "wires": [
             [
-                "1442d7b7bbbb4841"
+                "39f64dd8aff764b6"
             ]
         ]
     },
     {
-        "id": "1442d7b7bbbb4841",
+        "id": "39f64dd8aff764b6",
         "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
         "name": "",
         "property": "payload.is_playing",
         "propertyType": "msg",
@@ -560,161 +457,29 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 722,
-        "y": 160,
+        "x": 658,
+        "y": 848,
         "wires": [
             [
-                "31d4021e52f9fa95"
+                "277881d8699aa50a"
             ],
             [
-                "f11ce92dbb3f49fe"
+                "ade6b2d59b516cf8"
             ]
         ]
     },
     {
-        "id": "f6c7fc251182f80d",
-        "type": "inject",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "Initialise",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 124,
-        "y": 64,
-        "wires": [
-            [
-                "f19364596c3f5308"
-            ]
-        ]
-    },
-    {
-        "id": "4ad426033018fe20",
+        "id": "277881d8699aa50a",
         "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "Initialise reload in seconds",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reload",
-                "pt": "flow",
-                "to": "15",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1160,
-        "y": 64,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bb07c22b31237e41",
-        "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "Get Me",
-        "auth": "934bab396b45618f",
-        "api": "getMe",
-        "x": 780,
-        "y": 64,
-        "wires": [
-            [
-                "17a9243073ceadf7"
-            ]
-        ]
-    },
-    {
-        "id": "17a9243073ceadf7",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "Initialise Name",
-        "rules": [
-            {
-                "t": "set",
-                "p": "username",
-                "pt": "flow",
-                "to": "payload.display_name",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 944,
-        "y": 64,
-        "wires": [
-            [
-                "4ad426033018fe20"
-            ]
-        ]
-    },
-    {
-        "id": "f19364596c3f5308",
-        "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "",
-        "auth": "934bab396b45618f",
-        "api": "getMyCurrentPlaybackState",
-        "x": 324,
-        "y": 64,
-        "wires": [
-            [
-                "184c31bf0b1328f7"
-            ]
-        ]
-    },
-    {
-        "id": "184c31bf0b1328f7",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "65d18faaf3f34dc5",
-        "name": "Initialise Now Playing Data",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
+        "name": "Set Now Playing Data",
         "rules": [
             {
                 "t": "set",
                 "p": "image",
                 "pt": "flow",
                 "to": "payload.item.album.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "payload.item.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.item.artists[0].name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "payload.item.album.name",
                 "tot": "msg"
             },
             {
@@ -730,69 +495,163 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 584,
-        "y": 64,
+        "x": 884,
+        "y": 848,
         "wires": [
             [
-                "bb07c22b31237e41"
+                "7b7b2270bacb4e17"
             ]
         ]
     },
     {
-        "id": "db92836dc45ed445",
-        "type": "http in",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
+        "id": "ade6b2d59b516cf8",
+        "type": "subflow:e83aa6d3209a38ac",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
         "name": "",
-        "url": "/pause",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 118,
-        "y": 304,
+        "x": 678,
+        "y": 896,
         "wires": [
             [
-                "1731fc267ba23569"
+                "139c9f2832a85c54"
             ]
         ]
     },
     {
-        "id": "50a7672d7938696a",
+        "id": "a5fd213f815476a1",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1330,
+        "y": 896,
+        "wires": []
+    },
+    {
+        "id": "7b7b2270bacb4e17",
+        "type": "template",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n\n<head>\n    <title id=\"id_title\">Simple Spotify Now Playing</title>\n    <link id=\"id_favicon\" rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n        integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\n    <style>\n        body, html {\n            /* height: 140%; */\n            height: 100vh;\n            margin: 0;\n            font-family: Arial, Helvetica, sans-serif;\n            background-color: black;\n            overflow: hidden;\n        }\n\n        .mcwr-align {\n            align-items: baseline;\n        }\n\n        .mcwr-right {\n            text-align: right;\n        }\n\n        .mcwr-left {\n            text-align: left;\n        }\n\n        .mcwr-bg-image {\n            filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n            -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n            height: 110vh;\n            width: 110%;\n            background-position: center;\n            background-repeat: no-repeat;\n            background-size: cover;\n            position: absolute;\n            z-index: 1;\n        }\n\n        .mcwr-content {\n            color: white;\n            position: absolute;\n            font-weight: bolder;\n            z-index: 10;\n            padding: 5%;\n        }\n\n        .mcwr-imgResponsive {\n            width: 75%;\n            height: auto;\n            border-radius: 6%;\n            padding-top: 3%;\n            padding-bottom: 3%;\n        }\n\n        .mcwr-limitWidth {\n            max-width: 46vw;\n        }\n    </style>\n</head>\n\n<body>\n    <div style=\"position: relative;\">\n        <div id=\"id_bgImage\" class=\"mcwr-bg-image\" style=\"background-image:url({{flow.image}});\"></div>\n        <div class=\"container-fluid mcwr-content\">\n            <div class=\"row mcwr-align\"> <!-- Track title and status - large screen-->\n                <div class=\"col-8 col-sm-12 mcwr-right mcwr-limitWidth\">\n                    <h1 id=\"id_track\">Simple Spotify Now Playing</h1>\n                </div>            \n                <div class=\"col-4 col-sm-0 mcwr-left\">\n                    <p id=\"id_status\"></p>\n                </div>\n            </div>\n            <div class=\"row mcwr-align d-none d-xxl-block\"> <!-- Track Art and Album Artist Details - Large Screen -->\n                <div class=\"col-sm-8 mcwr-right mcwr-limitWidth\">\n                    <img id=\"id_albumArt\" src=\"{{{flow.image}}}\"\n                        class=\"mcwr-imgResponsive\">\n                    <h3 id=\"id_albumArtist\">By Mark White-Robinson (https://github.com/mwinterstorm/Simple-Spotify-Now-Playing)</h3>\n                </div>\n                <div class=\"col-sm-4\"></div>\n            </div>\n            <div class=\"row mcwr-align d-xxl-none\"> <!-- Track Art and Album Artist Details - Small Screen -->\n                <div class=\"col-sm-10 mcwr-right\">\n                    <img id=\"id2_albumArt\" src=\"{{{flow.image}}}\"\n                        class=\"mcwr-imgResponsive\">\n                    <h3 id=\"id_albumArtist\">By Mark White-Robinson (https://github.com/mwinterstorm/Simple-Spotify-Now-Playing)</h3>\n                </div>\n                <div class=\"col-sm-2\"></div>\n            </div>\n            <div class=\"row mcwr-align\">\n                <div class=\"col-sm-8 mcwr-right mcwr-limitWidth d-none d-xl-block\">\n                    <p id=\"id_time\"></p>\n\n                </div>\n\n                <div class=\"col-sm-4 mcwr-left\">\n                    <div>\n                        <input hidden id=\"id_skipbutton\" type=\"submit\" class=\"btn-default\" value=\"Skip\"\n                            onclick=\"skip()\">\n                        <input id=\"id_pausebutton\" type=\"submit\" class=\"btn-default\" value=\"Play / Pause\"\n                            onclick=\"playpause()\">\n                    </div>\n                </div>\n\n            </div>\n            <div class=\"row mcwr-align\">\n\n            </div>\n        </div>\n    </div>\n</body>\n<footer>\n    <p>Copyright Mark White-Robinson</p>\n</footer>\n<script src=\"https://code.jquery.com/jquery-3.5.1.js\"></script>\n<script>\n    // **** MAIN TRIGGER FUNCTION ****\n    $(document).ready(function () {\n        setInterval(updateInfo, 2000); //Run update function every 2 seconds - between 1 and 2 spotify API calls\n    });\n    // **** END MAIN TRIGGER FUNCTION ****\n\n    // **** CLOCK ****\n    let a;\n    let m;\n    let time;\n    function addZero(x) {\n        if (x < 10) {\n            return x = '0' + x;\n        } else {\n            return x;\n        }\n    }\n    setInterval(() => {\n        a = new Date();\n        m = a.getMinutes()\n        time = a.getHours() + \":\" + addZero(m);\n        document.getElementById(\"id_time\").innerHTML = time;\n    }, 5000); // Clock updates every 5 seconds\n    // **** END CLOCK ****\n\n    // **** FUNCTION DEFINITIONS ****\n    let jsonObject; //used in updateInfo / response from updateInfo() fetch call\n    let pauseUpdateCounter = 0; // used in updateInfo()\n    const funcUrl = window.location.href; // get URL of current page\n\n    async function updateInfo() { // Main function for updating info\n        let response = await fetch(funcUrl + '/?action=updateInfo&pauseCounter=' + pauseUpdateCounter, {\n            headers: {\n                Authentication: '{{{flow.authstatus}}}'\n            }\n        });\n        if (response.ok) {\n            jsonObject = await response.json();\n            let currentTrack = document.getElementById(\"id_track\").innerHTML;\n            if (jsonObject.is_playing == true) {\n                let setTrack = jsonObject.item.name;\n                pauseUpdateCounter += 7;\n                if (currentTrack != setTrack) {\n                    setUpdate();\n                } else {\n                    setPauseButton();\n                    setSkipButton();\n                }\n            } else if (jsonObject.is_playing != true) {\n                if (jsonObject.pauseUpdate == true) {\n                    setUpdate();\n                    pauseUpdateCounter = 0;\n                } else if (currentTrack == 'Simple Spotify Now Playing') {\n                    pauseUpdateCounter += 999;\n                    setPauseButton();\n                    setSkipButton();\n                } else {\n                    pauseUpdateCounter += 1;\n                    setPauseButton();\n                    setSkipButton();\n                }\n            }\n        } else {\n            let errorMsg = \"HTTP-Error: \" + response.status;\n            alert(\"HTTP-Error: \" + response.status);\n            return errorMsg;\n        };\n    }\n\n    function setUpdate() { // Used in UpdateInfo()\n        let setTrack = jsonObject.item.name;\n        let setStatus = jsonObject.playStatus;\n        let setAlbum = jsonObject.item.album.name;\n        let setArtist = jsonObject.item.album.artists[0].name;\n        let setAlbumArt = jsonObject.item.album.images[0].url;\n        let setFavicon = jsonObject.item.album.images[2].url;\n        let setbgImage = jsonObject.bgImage;\n        document.getElementById(\"id_title\").innerHTML = setTrack; //update page title\n        document.getElementById(\"id_track\").innerHTML = setTrack; //update track above album art\n        document.getElementById(\"id_status\").innerHTML = setStatus; // update status (e.g. Now Playing / Recent Tracks)\n        document.getElementById(\"id_albumArtist\").innerHTML = setAlbum + \" by \" + setArtist; // Update caption under image\n        document.getElementById(\"id_albumArt\").src = setAlbumArt; //Update album art image\n        document.getElementById(\"id2_albumArt\").src = setAlbumArt; //Update album art image\n        document.getElementById(\"id_favicon\").href = setFavicon; // Update favicon\n        document.getElementById(\"id_bgImage\").style = setbgImage; // Update background image\n        setPauseButton(); //update play pause button\n        setSkipButton(); //ensure skip button showing\n    };\n\n    function setSkipButton() { // called in UpdateInfo() and setUpdate() to show / hide skip button based on playing state\n        let skip = document.getElementById(\"id_skipbutton\");\n        if (jsonObject.is_playing == true) {\n            skip.removeAttribute(\"hidden\");\n        } else {\n            skip.setAttribute(\"hidden\", true);\n        }\n    }\n\n    function setPauseButton() { // // called in UpdateInfo() and setUpdate() to ensure pause button has correct label\n        let setPause = jsonObject.playpause;\n        let currentPause = document.getElementById(\"id_pausebutton\").value\n        if (setPause != currentPause) {\n            document.getElementById(\"id_pausebutton\").value = setPause;\n            pauseUpdateCounter += 100;\n        };\n    };\n\n    async function skip() { // Function runs on press of skip button\n        let response = await fetch(funcUrl + '/?action=skip', {\n            headers: {\n                Authentication: '{{{flow.authstatus}}}'\n            }\n        });\n        if (response.ok) {\n            setTimeout(updateInfo, 1450);\n        } else {\n            let errorMsg = \"HTTP-Error: \" + response.status;\n            alert(\"HTTP-Error: \" + response.status);\n            return errorMsg;\n        };\n    };\n\n    async function playpause() { // Function runs on press of playpause button\n        let response = await fetch(funcUrl + '/?action=playPause', {\n            headers: {\n                Authentication: '{{{flow.authstatus}}}'\n            }\n        });\n        if (response.ok) {\n            setPauseButton();\n            setTimeout(updateInfo, 1450);\n        } else {\n            let errorMsg = \"HTTP-Error: \" + response.status;\n            alert(\"HTTP-Error: \" + response.status);\n            return errorMsg;\n        };\n    };\n</script>\n</body>\n\n</html>",
+        "output": "str",
+        "x": 1202,
+        "y": 864,
+        "wires": [
+            [
+                "a5fd213f815476a1"
+            ]
+        ]
+    },
+    {
+        "id": "139c9f2832a85c54",
+        "type": "change",
+        "z": "64c10cbe6a24b687",
+        "g": "09be260be195cd7f",
+        "name": "Initial Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "image",
+                "pt": "flow",
+                "to": "payload.track.album.images[0].url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "favicon",
+                "pt": "flow",
+                "to": "payload.track.album.images[2].url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 854,
+        "y": 896,
+        "wires": [
+            [
+                "7b7b2270bacb4e17"
+            ]
+        ]
+    },
+    {
+        "id": "934bab396b45618f",
+        "type": "spotify-auth",
+        "name": "Spotify",
+        "scope": "user-read-playback-state\nuser-read-private\nuser-follow-read\nuser-library-read\nuser-read-playback-position\nplaylist-read-private\nuser-top-read\nuser-read-currently-playing\nuser-read-recently-played"
+    },
+    {
+        "id": "e704461c03c787f0",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "g": "2654f070e3870c4b",
+        "name": "Buttons",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ac99553f7cbc4f32",
+            "f41c710db9c73a5c",
+            "a30ae1cd6bb20695",
+            "f280db5bdf31ee23",
+            "f53a08b6483cb98c",
+            "02e070f0b2257cf4",
+            "9fa926fa4adbf982",
+            "512d95fb622a47d1",
+            "4cd8981aa2833d68"
+        ],
+        "x": 566,
+        "y": 455,
+        "w": 844,
+        "h": 178
+    },
+    {
+        "id": "ac99553f7cbc4f32",
         "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
         "auth": "03c549ed8930bddb",
         "api": "pause",
-        "x": 818,
-        "y": 304,
+        "x": 1202,
+        "y": 496,
         "wires": [
             [
-                "973210c850ad1522"
+                "02e070f0b2257cf4"
             ]
         ]
     },
     {
-        "id": "264917efd204ea70",
+        "id": "f41c710db9c73a5c",
         "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
         "auth": "934bab396b45618f",
         "api": "getMyCurrentPlaybackState",
-        "x": 456,
-        "y": 304,
+        "x": 840,
+        "y": 496,
         "wires": [
             [
-                "ebd35952b55ff9d4"
+                "a30ae1cd6bb20695"
             ]
         ]
     },
     {
-        "id": "ebd35952b55ff9d4",
+        "id": "a30ae1cd6bb20695",
         "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
         "property": "payload.is_playing",
         "propertyType": "msg",
@@ -801,166 +660,72 @@
                 "t": "true"
             },
             {
-                "t": "false"
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 658,
-        "y": 304,
+        "x": 1042,
+        "y": 496,
         "wires": [
             [
-                "50a7672d7938696a"
+                "ac99553f7cbc4f32"
             ],
             [
-                "51812597ce3fbdfa"
+                "f280db5bdf31ee23"
             ]
         ]
     },
     {
-        "id": "51812597ce3fbdfa",
+        "id": "f280db5bdf31ee23",
         "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
         "auth": "03c549ed8930bddb",
         "api": "play",
-        "x": 786,
-        "y": 352,
-        "wires": [
-            [
-                "973210c850ad1522"
-            ]
-        ]
-    },
-    {
-        "id": "cbe43b404f2af4f2",
-        "type": "http in",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "url": "/skip",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 126,
-        "y": 400,
-        "wires": [
-            [
-                "adcb72fa067e7f8b"
-            ]
-        ]
-    },
-    {
-        "id": "6a3159b7d6ebaea6",
-        "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "auth": "03c549ed8930bddb",
-        "api": "skipToNext",
-        "x": 406,
-        "y": 400,
-        "wires": [
-            [
-                "973210c850ad1522"
-            ]
-        ]
-    },
-    {
-        "id": "973210c850ad1522",
-        "type": "http response",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 940,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "3d9c77a6dc1692be",
-        "type": "node-red-contrib-basicauth",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "",
-        "realm": "spotify",
-        "username": "admin",
-        "password": "admin",
-        "x": 294,
-        "y": 160,
-        "wires": [
-            [
-                "f1cb321a5618e587"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "2c14e7348516f78f",
-        "type": "http in",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
-        "name": "Web Request",
-        "url": "/spotifystatus",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 118,
-        "y": 512,
-        "wires": [
-            [
-                "b1ba4fde9e60fd01"
-            ]
-        ]
-    },
-    {
-        "id": "5087a5945f7bc7be",
-        "type": "http response",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 1180,
-        "y": 496,
-        "wires": []
-    },
-    {
-        "id": "f6d2f9f111671594",
-        "type": "spotify",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
-        "name": "",
-        "auth": "934bab396b45618f",
-        "api": "getMyCurrentPlaybackState",
-        "x": 456,
+        "x": 1170,
         "y": 544,
         "wires": [
             [
-                "7b40e428bf0417c2"
+                "02e070f0b2257cf4"
             ]
         ]
     },
     {
-        "id": "3c7a3db57c75efcc",
-        "type": "http response",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "id": "f53a08b6483cb98c",
+        "type": "spotify",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
-        "statusCode": "401",
+        "auth": "03c549ed8930bddb",
+        "api": "skipToNext",
+        "x": 790,
+        "y": 592,
+        "wires": [
+            [
+                "02e070f0b2257cf4"
+            ]
+        ]
+    },
+    {
+        "id": "02e070f0b2257cf4",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
+        "name": "",
+        "statusCode": "200",
         "headers": {},
-        "x": 396,
-        "y": 496,
+        "x": 1324,
+        "y": 592,
         "wires": []
     },
     {
-        "id": "b1ba4fde9e60fd01",
+        "id": "9fa926fa4adbf982",
         "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
         "property": "req.headers.authentication",
         "propertyType": "msg",
@@ -979,66 +744,177 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 258,
-        "y": 512,
+        "x": 642,
+        "y": 592,
         "wires": [
             [
-                "3c7a3db57c75efcc"
+                "512d95fb622a47d1"
             ],
             [
-                "f6d2f9f111671594"
+                "f53a08b6483cb98c"
             ]
         ]
     },
     {
-        "id": "3659a282266b315c",
-        "type": "random",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
+        "id": "512d95fb622a47d1",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
-        "low": "100000000",
-        "high": "999999999",
-        "inte": "true",
-        "property": "payload",
-        "x": 284,
-        "y": 208,
-        "wires": [
-            [
-                "6b3b5c20237a3075"
-            ]
-        ]
+        "statusCode": "401",
+        "headers": {},
+        "x": 764,
+        "y": 544,
+        "wires": []
     },
     {
-        "id": "6b3b5c20237a3075",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
+        "id": "4cd8981aa2833d68",
+        "type": "switch",
+        "z": "64c10cbe6a24b687",
+        "g": "e704461c03c787f0",
         "name": "",
+        "property": "req.headers.authentication",
+        "propertyType": "msg",
         "rules": [
             {
-                "t": "set",
-                "p": "authstatus",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "t": "neq",
+                "v": "authstatus",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "authstatus",
+                "vt": "flow"
             }
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 458,
-        "y": 208,
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 642,
+        "y": 496,
         "wires": [
-            []
+            [
+                "512d95fb622a47d1"
+            ],
+            [
+                "f41c710db9c73a5c"
+            ]
         ]
     },
     {
-        "id": "5b50922751a4a290",
+        "id": "03c549ed8930bddb",
+        "type": "spotify-auth",
+        "name": "Spotify All Scopes",
+        "scope": "user-read-playback-state\nuser-modify-playback-state\nuser-read-private\nuser-follow-modify\nugc-image-upload\nuser-follow-read\nuser-library-modify\nuser-library-read\nstreaming\nuser-read-playback-position\nplaylist-modify-private\nplaylist-read-collaborative\napp-remote-control\nuser-read-email\nplaylist-read-private\nuser-top-read\nplaylist-modify-public\nuser-read-currently-playing\nuser-read-recently-played",
+        "info": "noderedweball"
+    },
+    {
+        "id": "1e0790ad9ecd35a4",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "g": "2654f070e3870c4b",
+        "name": "InfoRefresh",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b903d41feea6da73",
+            "1b287c91625de4db",
+            "d55daa334edfc1c3",
+            "20eff3cac95cc869",
+            "69d7477a89bf5c91",
+            "38e82f10caba549f",
+            "864fbc661d21df94",
+            "3dc4f300ede964da",
+            "884560b8fb09b0ad",
+            "a0ee666226369892",
+            "4021da310e7ff026",
+            "0183632404f95517"
+        ],
+        "x": 310,
+        "y": 215,
+        "w": 1100,
+        "h": 226
+    },
+    {
+        "id": "b903d41feea6da73",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1324,
+        "y": 336,
+        "wires": []
+    },
+    {
+        "id": "1b287c91625de4db",
+        "type": "spotify",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "auth": "934bab396b45618f",
+        "api": "getMyCurrentPlaybackState",
+        "x": 584,
+        "y": 304,
+        "wires": [
+            [
+                "38e82f10caba549f"
+            ]
+        ]
+    },
+    {
+        "id": "d55daa334edfc1c3",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 524,
+        "y": 256,
+        "wires": []
+    },
+    {
+        "id": "20eff3cac95cc869",
+        "type": "switch",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "property": "req.headers.authentication",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "authstatus",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "authstatus",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 386,
+        "y": 272,
+        "wires": [
+            [
+                "d55daa334edfc1c3"
+            ],
+            [
+                "1b287c91625de4db"
+            ]
+        ]
+    },
+    {
+        "id": "69d7477a89bf5c91",
         "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
         "name": "",
         "rules": [
             {
@@ -1068,19 +944,19 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 800,
-        "y": 496,
+        "x": 928,
+        "y": 256,
         "wires": [
             [
-                "7c5c9742bd1accc7"
+                "884560b8fb09b0ad"
             ]
         ]
     },
     {
-        "id": "7b40e428bf0417c2",
+        "id": "38e82f10caba549f",
         "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
         "name": "",
         "property": "payload.is_playing",
         "propertyType": "msg",
@@ -1097,301 +973,36 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 642,
-        "y": 544,
-        "wires": [
-            [
-                "5b50922751a4a290"
-            ],
-            [
-                "7aa7674b828f0514"
-            ]
-        ]
-    },
-    {
-        "id": "adcb72fa067e7f8b",
-        "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "property": "req.headers.authentication",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "authstatus",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
-                "v": "authstatus",
-                "vt": "flow"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 258,
-        "y": 400,
-        "wires": [
-            [
-                "2e578f219497998f"
-            ],
-            [
-                "6a3159b7d6ebaea6"
-            ]
-        ]
-    },
-    {
-        "id": "2e578f219497998f",
-        "type": "http response",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "statusCode": "401",
-        "headers": {},
-        "x": 380,
-        "y": 352,
-        "wires": []
-    },
-    {
-        "id": "1731fc267ba23569",
-        "type": "switch",
-        "z": "d8adc1d034339c91",
-        "g": "11ac263522ac6589",
-        "name": "",
-        "property": "req.headers.authentication",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "authstatus",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
-                "v": "authstatus",
-                "vt": "flow"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 258,
+        "x": 770,
         "y": 304,
         "wires": [
             [
-                "2e578f219497998f"
+                "69d7477a89bf5c91"
             ],
             [
-                "264917efd204ea70"
+                "4021da310e7ff026"
             ]
         ]
     },
     {
-        "id": "31d4021e52f9fa95",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "Set Now Playing Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "image",
-                "pt": "flow",
-                "to": "payload.item.album.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "payload.item.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.item.artists[0].name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "payload.item.album.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "favicon",
-                "pt": "flow",
-                "to": "payload.item.album.images[2].url",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 900,
-        "y": 160,
-        "wires": [
-            [
-                "e59981cd94723dbf"
-            ]
-        ]
-    },
-    {
-        "id": "f11ce92dbb3f49fe",
+        "id": "864fbc661d21df94",
         "type": "subflow:e83aa6d3209a38ac",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
         "name": "",
-        "x": 742,
-        "y": 208,
+        "x": 934,
+        "y": 352,
         "wires": [
             [
-                "5b0605a1d150be1d"
+                "3dc4f300ede964da"
             ]
         ]
     },
     {
-        "id": "d27603b173f558fe",
-        "type": "http response",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 1266,
-        "y": 208,
-        "wires": []
-    },
-    {
-        "id": "b8b18a0697e81421",
-        "type": "template",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "html",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title id=\"id_track\">{{flow.trackname}}</title>\n    <link id=\"id_favicon\" rel=\"icon\" type=\"image/png\" href=\"{{{flow.favicon}}}\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">\n    <meta name=\"description\" content=\"Simple Spotify Now Playing\">\n    <style>{{{flow.css}}}</style>\n    <!-- SCRIPTS -->\n    <script src=\"https://code.jquery.com/jquery-3.5.1.js\"></script>\n    <script type=\"text/javascript\">    \n    // Update info every 6 seconds\n        $(document).ready(function() {\n            setInterval(updateInfo, 6000); \n        });\n    </script> \n    <script>\n        async function updateInfo() {\n            let response = await fetch(\"/spotifystatus\", {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) { \n                let currentTrack = document.getElementById(\"id_track\").innerHTML\n                let jsonObject = await response.json();\n                let setTrack = jsonObject.item.name;\n                if (currentTrack != setTrack) {\n                    // Update track name\n                    document.getElementById(\"id_track\").innerHTML = setTrack;\n                    // Update caption above image\n                    let setStatus = jsonObject.playStatus;\n                    document.getElementById(\"id_statusTrack\").innerHTML = setStatus + \": \" + setTrack;\n                    // Update caption under image\n                    let setAlbum = jsonObject.item.album.name;\n                    let setArtist = jsonObject.item.album.artists[0].name;\n                    document.getElementById(\"id_albumArtist\").innerHTML = setAlbum + \" by \" + setArtist;\n                    // Update image\n                    let setAlbumArt = jsonObject.item.album.images[0].url;\n                    document.getElementById(\"id_albumArt\").src = setAlbumArt;\n                    // Update favicon\n                    let setFavicon = jsonObject.item.album.images[2].url;\n                    document.getElementById(\"id_favicon\").href = setFavicon;\n                    // update background image\n                    let setCSS = jsonObject.css;\n                    document.getElementById(\"id_css\").style = setCSS;\n                    // update play / pause button\n                    let setPause = jsonObject.playpause;\n                    document.getElementById(\"id_pausebutton\").value = setPause;\n                } else {\n                    // update play / pause button\n                    let setPause = jsonObject.playpause;\n                    if (document.getElementById(\"id_pausebutton\").value != setPause) {\n                        document.getElementById(\"id_pausebutton\").value = setPause;\n                    }\n                }\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n\n    <script type=\"text/javascript\">\n        // Script for skip button\n        async function skip() {\n            let response = await fetch('/skip', {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) {\n                setTimeout(updateInfo, 1450);\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n    <script type=\"text/javascript\">\n        // Script for play / pause button\n        async function playpause() {\n            let response = await fetch('/pause', {\n                headers: {\n                    Authentication: '{{{flow.authstatus}}}'\n            }});\n            if (response.ok) {\n                let jsonPause = await response.json();\n                let setPause = jsonPause.playpause;\n                document.getElementById(\"id_pausebutton\").value = setPause;\n                setTimeout(updateInfo, 1450);\n            } else {\n                let errorMsg = \"HTTP-Error: \" + response.status;\n                alert(\"HTTP-Error: \" + response.status);\n                return errorMsg;\n            };\n        };\n    </script>\n</head>\n\n<body>\n<div id=\"id_css\" class=\"bg-image\" style=\"background-image:url({{flow.image}});\"></div>\n\n<div class=\"playing\" id=\"playing\">\n    \n  <div class=\"album-data\">\n    <h1 id=\"id_statusTrack\">{{{flow.status}}} {{{flow.trackname}}}</h1>\n    <img id=\"id_albumArt\" src=\"{{{flow.image}}}\" alt=\"{{{flow.trackname}}} on {{{flow.albumname}}} by {{{flow.artistname}}}\" class=\"image-responsive\"> \n    <h3 id=\"id_albumArtist\">{{{flow.albumname}}} by {{{flow.artistname}}}</h3>\n  </div>\n  \n  <div class=\"button\">\n<!-- START: Skip button -->\n    <input type=\"submit\" class=\"button1\" value=\"Skip\" onclick=\"skip()\">\n<!-- START: Pause Button-->\n    <input id=\"id_pausebutton\" type=\"submit\" class=\"button2\" value=\"Play / Pause\" onclick=\"playpause()\">\n  </div>\n\n</div>\n</body>\n</html>",
-        "output": "str",
-        "x": 1122,
-        "y": 208,
-        "wires": [
-            [
-                "d27603b173f558fe"
-            ]
-        ]
-    },
-    {
-        "id": "e59981cd94723dbf",
-        "type": "template",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "css",
-        "field": "css",
-        "fieldType": "flow",
-        "format": "css",
-        "syntax": "mustache",
-        "template": "body, html {\n    height: 140%;\n    margin: 0;\n    font-family: Arial, Helvetica, sans-serif;\n    background-color: black;\n    overflow: hidden;\n  }\n  \n  .bg-image {\n    filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n    -webkit-filter: blur(8px) hue-rotate(190deg) brightness(0.7);\n    height: 110%; \n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n  }\n  \n  .playing {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    z-index: 2;\n    width: 80%;\n    display: flex;\n  }\n  \n/* New trying to add button */\n\n  .button {\n    position: fixed;\n    bottom: 0;\n    right: 0;\n\n  }\n\n  .button1 {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(60, 221, 173, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    margin: 4px 2px;\n    cursor: pointer;\n  }\n\n  .button2 {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(60, 221, 173, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    margin: 4px 2px;\n    cursor: pointer;\n  }\n\n/* END BUTTON *?\n\n  /* Position text in the middle of the page/image */\n  .song-text {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0, 0, 0, 0); /* Black w/opacity/see-through */\n    border-radius: 25px;\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    text-align: right;\n    align-self: center;\n    padding: 1.5%;\n    display: block;\n    height: fit-content;\n  }\n  \n  /* Position text in the middle of the page/image */\n  .album-data {\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */\n    color: rgb(255, 255, 255);\n    font-weight: bold;\n    text-align: right;\n    display: block;\n  }\n  .image-responsive {\n    width: 75%;\n    height: auto;\n    border-radius: 25px;\n  }",
-        "output": "str",
-        "x": 1106,
-        "y": 160,
-        "wires": [
-            [
-                "b8b18a0697e81421"
-            ]
-        ]
-    },
-    {
-        "id": "7aa7674b828f0514",
-        "type": "subflow:e83aa6d3209a38ac",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
-        "name": "",
-        "x": 790,
-        "y": 560,
-        "wires": [
-            [
-                "161a9de5c07c7b23"
-            ]
-        ]
-    },
-    {
-        "id": "5b0605a1d150be1d",
+        "id": "3dc4f300ede964da",
         "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "42a7934ebca3d4d3",
-        "name": "Initial Data",
-        "rules": [
-            {
-                "t": "set",
-                "p": "image",
-                "pt": "flow",
-                "to": "payload.track.album.images[0].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "trackname",
-                "pt": "flow",
-                "to": "username",
-                "tot": "flow"
-            },
-            {
-                "t": "set",
-                "p": "artistname",
-                "pt": "flow",
-                "to": "payload.track.artists[0].name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "albumname",
-                "pt": "flow",
-                "to": "payload.track.name",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "favicon",
-                "pt": "flow",
-                "to": "payload.track.album.images[2].url",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "status",
-                "pt": "flow",
-                "to": "Recent Songs:",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 918,
-        "y": 208,
-        "wires": [
-            [
-                "e59981cd94723dbf"
-            ]
-        ]
-    },
-    {
-        "id": "161a9de5c07c7b23",
-        "type": "change",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
         "name": "",
         "rules": [
             {
@@ -1407,6 +1018,20 @@
                 "pt": "msg",
                 "to": "Play",
                 "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.isPlaying",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.pauseUpdate",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
             }
         ],
         "action": "",
@@ -1414,31 +1039,304 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 958,
-        "y": 560,
+        "x": 1008,
+        "y": 304,
         "wires": [
             [
-                "7c5c9742bd1accc7"
+                "884560b8fb09b0ad"
             ]
         ]
     },
     {
-        "id": "7c5c9742bd1accc7",
+        "id": "884560b8fb09b0ad",
         "type": "template",
-        "z": "d8adc1d034339c91",
-        "g": "99946da8b4d94723",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
         "name": "Set bg image",
-        "field": "payload.css",
+        "field": "payload.bgImage",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
         "template": "background-image:url({{{flow.image}}});",
         "output": "str",
-        "x": 1014,
-        "y": 496,
+        "x": 1190,
+        "y": 256,
         "wires": [
             [
-                "5087a5945f7bc7be"
+                "b903d41feea6da73"
+            ]
+        ]
+    },
+    {
+        "id": "a0ee666226369892",
+        "type": "switch",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "property": "req.query.pauseCounter",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "testupdate",
+                "vt": "msg"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 400,
+        "wires": [
+            [
+                "864fbc661d21df94"
+            ],
+            [
+                "0183632404f95517"
+            ]
+        ]
+    },
+    {
+        "id": "4021da310e7ff026",
+        "type": "random",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "low": "15",
+        "high": "200",
+        "inte": "true",
+        "property": "testupdate",
+        "x": 764,
+        "y": 400,
+        "wires": [
+            [
+                "a0ee666226369892"
+            ]
+        ]
+    },
+    {
+        "id": "0183632404f95517",
+        "type": "change",
+        "z": "64c10cbe6a24b687",
+        "g": "1e0790ad9ecd35a4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.playpause",
+                "pt": "msg",
+                "to": "Play",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.isPlaying",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.pauseUpdate",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1136,
+        "y": 400,
+        "wires": [
+            [
+                "b903d41feea6da73"
+            ]
+        ]
+    },
+    {
+        "id": "f70e88b4c3dab11d",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "g": "2654f070e3870c4b",
+        "name": "Authorisation",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b17dc1fbe220c65d",
+            "dd6c35c1270cea48",
+            "cbe6c146aa774db5",
+            "e4fcfc6b8fc08d7c"
+        ],
+        "x": 566,
+        "y": 647,
+        "w": 840,
+        "h": 130
+    },
+    {
+        "id": "b17dc1fbe220c65d",
+        "type": "node-red-contrib-basicauth",
+        "z": "64c10cbe6a24b687",
+        "g": "f70e88b4c3dab11d",
+        "name": "",
+        "realm": "spotify",
+        "username": "admin",
+        "password": "admin",
+        "x": 662,
+        "y": 704,
+        "wires": [
+            [
+                "dd6c35c1270cea48",
+                "b852d5829934f97f"
+            ],
+            [
+                "e4fcfc6b8fc08d7c"
+            ]
+        ]
+    },
+    {
+        "id": "dd6c35c1270cea48",
+        "type": "random",
+        "z": "64c10cbe6a24b687",
+        "g": "f70e88b4c3dab11d",
+        "name": "",
+        "low": "1",
+        "high": "99999999999999",
+        "inte": "true",
+        "property": "payload",
+        "x": 1116,
+        "y": 688,
+        "wires": [
+            [
+                "cbe6c146aa774db5"
+            ]
+        ]
+    },
+    {
+        "id": "cbe6c146aa774db5",
+        "type": "change",
+        "z": "64c10cbe6a24b687",
+        "g": "f70e88b4c3dab11d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "authstatus",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1290,
+        "y": 688,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4fcfc6b8fc08d7c",
+        "type": "http response",
+        "z": "64c10cbe6a24b687",
+        "g": "f70e88b4c3dab11d",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 1116,
+        "y": 736,
+        "wires": []
+    },
+    {
+        "id": "760717e21b1612bd",
+        "type": "group",
+        "z": "64c10cbe6a24b687",
+        "g": "2654f070e3870c4b",
+        "name": "Web request",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1a57840367ef0c78",
+            "7d9e0a9f21a96ddf"
+        ],
+        "x": 230,
+        "y": 487,
+        "w": 294,
+        "h": 161
+    },
+    {
+        "id": "1a57840367ef0c78",
+        "type": "http in",
+        "z": "64c10cbe6a24b687",
+        "g": "760717e21b1612bd",
+        "name": "",
+        "url": "/spotify",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 326,
+        "y": 528,
+        "wires": [
+            [
+                "7d9e0a9f21a96ddf"
+            ]
+        ]
+    },
+    {
+        "id": "7d9e0a9f21a96ddf",
+        "type": "switch",
+        "z": "64c10cbe6a24b687",
+        "g": "760717e21b1612bd",
+        "name": "",
+        "property": "req.query.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "updateInfo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "playPause",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "skip",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 448,
+        "y": 592,
+        "wires": [
+            [
+                "20eff3cac95cc869"
+            ],
+            [
+                "4cd8981aa2833d68"
+            ],
+            [
+                "9fa926fa4adbf982"
+            ],
+            [
+                "b17dc1fbe220c65d"
             ]
         ]
     }
